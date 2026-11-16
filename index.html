@@ -318,14 +318,18 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
 .c-step[hidden]{display:none}
 .c-form{display:grid;gap:16px}
 .c-form label{display:grid;gap:7px;font-size:14.5px;font-weight:600;color:#d6d1c7}
-.c-form input,.c-form select{font:inherit;font-weight:400;color:var(--paper);background:#0A0E1A;border:1px solid #ffffff2a;border-radius:6px;padding:12px 14px;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none}
+.c-form input,.c-form select,.c-form textarea{font:inherit;font-weight:400;color:var(--paper);background:#0A0E1A;border:1px solid #ffffff2a;border-radius:6px;padding:12px 14px;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none}
 .c-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EEE8DC' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:40px}
-.c-form input:focus,.c-form select:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px #E2B05A33}
+.c-form input:focus,.c-form select:focus,.c-form textarea:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px #E2B05A33}
 .c-form input[aria-invalid=true]{border-color:#e07a6a}
 .c-err{color:#f0a090;font-size:14px;min-height:0}
 .c-err:empty{display:none}
 .c-form .btn{justify-content:center;margin-top:4px}
 .c-alt{font-size:14px;color:var(--muted)}
+.c-form textarea{resize:vertical;min-height:84px}
+.c-opt{font-weight:400;color:var(--muted)}
+.c-hp{position:absolute!important;left:-9999px;width:1px;height:1px;overflow:hidden}
+.c-privacy{font-size:12.5px;color:var(--muted);line-height:1.45}
 .c-alt:empty{display:none}
 .c-alt a{color:var(--paper)}
 .c-back{font-size:14px;color:var(--muted);text-decoration:underline;justify-self:start}
@@ -527,9 +531,12 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
       <label>Mode of communication
         <select name="mode" id="cMode"><option value="email">Email</option><option value="phone">Phone</option><option value="linkedin">LinkedIn message</option></select>
       </label>
+      <label>Message <span class="c-opt">(optional)</span><textarea name="message" rows="3" maxlength="2000" placeholder="What would you like to talk about?"></textarea></label>
+      <label class="c-hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
       <p class="c-err" id="cErr" role="alert"></p>
       <button class="btn btn-play" type="submit" id="cGo">Draft an email to Amey</button>
       <p class="c-alt" id="cAlt" aria-live="polite"></p>
+      <p class="c-privacy">Amey receives your name and email so he can follow up. They aren't shared with anyone else.</p>
       <button type="button" class="c-back" id="cBack">Back</button>
     </form>
   </div>
@@ -1053,6 +1060,8 @@ function openProject(c){
 
 
 /* ================= Connect pop-up ================= */
+/* Paste the Google Apps Script web app URL (ends in /exec) here. Empty = don't save submissions. */
+const CONTACT_ENDPOINT='';
 const AMEY={email:'ameyashok.thakare@utdallas.edu', phone:'+14695586548', phoneShown:'(469) 558-6548', linkedin:'https://www.linkedin.com/in/ameythakare007/'};
 const CM=$('#connect'), cForm=$('#cForm'), cAsk=$('#cAsk'), cFab=$('#cFab'), cGo=$('#cGo'), cAlt=$('#cAlt'), cErr=$('#cErr'), cMode=$('#cMode');
 const MODE_LABEL={email:'Draft an email to Amey', phone:'Call Amey', linkedin:'Message Amey on LinkedIn'};
@@ -1063,10 +1072,19 @@ function openConnect(step){
   if(!CM.classList.contains('open'))openModal(CM);
   setTimeout(()=>{(step==='form'?cForm.querySelector('input'):$('#cYes')).focus();},60);
 }
-$('#cYes').onclick=()=>openConnect('form');
+let cOpenedAt=0;
+$('#cYes').onclick=()=>{cOpenedAt=Date.now();openConnect('form');};
 $('#cLater').onclick=()=>closeModal(CM);
 $('#cBack').onclick=()=>openConnect('ask');
 cFab.onclick=()=>openConnect('ask');
+let cLastSaved='';
+function saveContact(d){
+  if(!CONTACT_ENDPOINT)return;
+  const key=[d.name,d.email,d.mode,d.message].join('|'); if(key===cLastSaved)return; cLastSaved=key;
+  const body=new URLSearchParams({...d,page:location.href,elapsed:String(Date.now()-cOpenedAt),website:cForm.website.value});
+  try{ if(navigator.sendBeacon&&navigator.sendBeacon(CONTACT_ENDPOINT,body))return; }catch(_){}
+  try{ fetch(CONTACT_ENDPOINT,{method:'POST',body,mode:'no-cors',keepalive:true}); }catch(_){}
+}
 cMode.onchange=()=>{cGo.textContent=MODE_LABEL[cMode.value];cAlt.textContent='';};
 cForm.addEventListener('submit',e=>{
   e.preventDefault();
@@ -1075,7 +1093,9 @@ cForm.addEventListener('submit',e=>{
   if(!name){cErr.textContent='Enter your name.';cForm.name.focus();return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){cErr.textContent='Enter a valid email ID, like name@company.com.';cForm.email.focus();return;}
   cErr.textContent='';
-  const intro=`Hi Amey, I'm ${name} (${email}). I came across your portfolio and would like to connect.`;
+  const note=cForm.message.value.trim();
+  const intro=`Hi Amey, I'm ${name} (${email}). I came across your portfolio and would like to connect.`+(note?`\n\n${note}`:'');
+  saveContact({name,email,mode:cMode.selectedOptions[0].text,message:note});
   if(mode==='email'){
     const url=`mailto:${AMEY.email}?subject=${encodeURIComponent('Connecting from your portfolio: '+name)}&body=${encodeURIComponent(intro+'\n\nBest,\n'+name+'\n'+email)}`;
     location.href=url;
