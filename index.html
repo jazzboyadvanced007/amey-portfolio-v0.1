@@ -81,18 +81,15 @@ nav .spacer{flex:1}
 .menu-btn{display:none}
 
 /* ---------- Hero ---------- */
-.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-top:110px;padding-bottom:clamp(40px,7vw,90px);overflow:hidden}
-.hero-art{position:absolute;inset:0 0 0 auto;width:min(62vw,980px);will-change:transform}
-.hero-art::before{content:"";position:absolute;inset:0;background:radial-gradient(42% 38% at 58% 34%,#8EA6D133,transparent 70%),radial-gradient(60% 50% at 60% 60%,#E2B05A1a,transparent 70%)}
-.hero-art img{position:relative;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
-.hero-art::after{content:"";position:absolute;inset:0;background:
-  linear-gradient(90deg,var(--ink) 0%,#0A0E1Acc 22%,#0A0E1A33 55%,#0A0E1A00 75%),
-  linear-gradient(0deg,var(--ink) 0%,#0A0E1A00 40%),
-  linear-gradient(180deg,#0A0E1Aaa 0%,#0A0E1A00 22%)}
-.hero-copy{position:relative;max-width:720px;will-change:transform,opacity}
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);column-gap:clamp(16px,3vw,56px);padding:84px var(--pad) 0;overflow:hidden}
+.hero-art{grid-column:2;grid-row:1;align-self:end;justify-self:center;position:relative;width:100%;max-width:660px;height:min(calc(100svh - 84px),860px);will-change:transform}
+.hero-art::before{content:"";position:absolute;inset:6% -12% 0;background:radial-gradient(46% 40% at 50% 34%,#8EA6D138,transparent 70%),radial-gradient(60% 50% at 50% 64%,#E2B05A1c,transparent 70%);pointer-events:none}
+.hero-art img{position:relative;width:100%;height:100%;object-fit:contain;object-position:50% 100%;-webkit-mask-image:linear-gradient(to bottom,#000 80%,transparent 99%);mask-image:linear-gradient(to bottom,#000 80%,transparent 99%)}
+.hero-copy{grid-column:1;grid-row:1;align-self:center;position:relative;z-index:2;max-width:720px;padding-block:clamp(28px,6vh,72px);will-change:transform,opacity}
+.hero .hero-copy{padding-inline:0}
 .hero .rank{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--paper);margin-bottom:14px}
 .hero .rank .tag{font-family:var(--display);font-weight:800;background:var(--brass);color:var(--ink);padding:3px 7px 1px;border-radius:3px;font-size:15px;letter-spacing:.04em}
-.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(68px,11.5vw,168px);line-height:.84;letter-spacing:.01em;text-transform:uppercase}
+.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(60px,9.6vw,164px);line-height:.84;letter-spacing:.01em;text-transform:uppercase}
 .hero h1 span{display:block}
 .hero .meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:22px 0 16px;color:#cfcbc2;font-size:16px}
 .hero .meta .rating{border:1px solid #ffffff66;padding:0 7px;border-radius:3px;font-size:14px}
@@ -103,7 +100,7 @@ nav .spacer{flex:1}
 .hero .credits b{color:#c9c6bf;font-weight:500}
 .hero [data-in]{opacity:0;transform:translateY(18px)}
 body.ready .hero [data-in]{opacity:1;transform:none;transition:opacity .8s ease,transform .9s var(--ease);transition-delay:calc(var(--i,0) * 110ms)}
-body.ready .hero-art{animation:artIn 1.8s var(--ease) both}
+body.ready .hero-art img{animation:artIn 1.8s var(--ease) both}
 @keyframes artIn{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:scale(1)}}
 
 /* ---------- Impact ---------- */
@@ -121,17 +118,27 @@ body.ready .hero-art{animation:artIn 1.8s var(--ease) both}
 .season-tabs button[aria-selected=true]{background:var(--paper);color:var(--ink)}
 .season-desc{color:var(--muted);font-size:15px}
 .episodes{display:grid;gap:4px;max-width:1100px}
-.ep{display:grid;grid-template-columns:56px 200px 1fr;gap:22px;align-items:center;padding:18px;border-radius:8px;border-bottom:1px solid #ffffff10;transition:background .25s}
-.ep:hover{background:var(--ink-2)}
-.ep .num{font-family:var(--display);font-size:36px;font-weight:700;color:#5a6075;text-align:center;transition:color .25s}
-.ep:hover .num{color:var(--paper)}
-.ep .thumb{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--g);display:grid;place-items:center}
-.ep .thumb .stat{font-family:var(--display);font-weight:900;font-size:40px;color:#fff;text-shadow:0 2px 20px #0006;transition:transform .5s var(--ease),opacity .3s}
-.ep .thumb .play{position:absolute;width:44px;height:44px;border-radius:50%;border:2px solid #fff;background:#0007;display:grid;place-items:center;opacity:0;transform:scale(.7);transition:opacity .3s,transform .35s var(--ease)}
+.ep{display:grid;grid-template-columns:56px 260px 1fr;gap:24px;align-items:center;padding:18px;border-radius:8px;border-bottom:1px solid #ffffff10;transition:background .3s}
+.ep .num{font-family:var(--display);font-size:36px;font-weight:700;color:#5a6075;text-align:center;transition:color .3s}
+.ep .thumb{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--g)}
+.ep .thumb svg.art{position:absolute;inset:0;width:100%;height:100%;transition:transform .8s var(--ease)}
+.ep .thumb::after{content:"";position:absolute;inset:0;background:#05070d;opacity:0;transition:opacity .35s}
+.ep .thumb .stat{position:absolute;left:10px;bottom:12px;z-index:2;font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:.02em;line-height:1;color:var(--brass);background:#0A0E1Ad9;padding:4px 8px 3px;border-radius:4px}
+.ep .thumb .play{position:absolute;z-index:2;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:2px solid #fff;background:#0008;display:grid;place-items:center;opacity:0;transform:scale(.7);transition:opacity .3s,transform .35s var(--ease)}
 .ep .thumb .play svg{width:16px;fill:#fff;margin-left:3px}
-.ep:hover .thumb .stat{transform:scale(1.15);opacity:.25}
-.ep:hover .thumb .play{opacity:1;transform:none}
-.ep .progress{position:absolute;left:0;right:0;bottom:0;height:4px;background:#ffffff33}
+.ep.peek{background:var(--ink-2)}
+.ep.peek .num{color:var(--paper)}
+.ep.peek .thumb svg.art{transform:scale(1.07)}
+.ep.peek .thumb::after{opacity:.35}
+.ep.peek .thumb .play{opacity:1;transform:none}
+@media (hover:hover){
+  .ep:hover{background:var(--ink-2)}
+  .ep:hover .num{color:var(--paper)}
+  .ep:hover .thumb svg.art{transform:scale(1.07)}
+  .ep:hover .thumb::after{opacity:.35}
+  .ep:hover .thumb .play{opacity:1;transform:none}
+}
+.ep .progress{position:absolute;z-index:2;left:0;right:0;bottom:0;height:4px;background:#ffffff33}
 .ep .progress i{display:block;height:100%;width:0;background:var(--brass);transition:width 1.4s var(--ease)}
 .ep.seen .progress i{width:var(--w,100%)}
 .ep h3{font-size:18px;font-weight:600;display:flex;justify-content:space-between;gap:16px}
@@ -164,13 +171,18 @@ body.ready .hero-art{animation:artIn 1.8s var(--ease) both}
 .card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .card .tags span{font-size:12.5px;color:var(--steel);border:1px solid #8EA6D144;padding:1px 8px;border-radius:20px}
 .card .open{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:14px;font-weight:600;color:var(--paper)}
-@media (hover:hover) and (min-width:900px){
+.card.peek{transform:scale(1.05) translateY(-6px);z-index:5;box-shadow:0 22px 50px #000c;transition:transform .35s var(--ease),box-shadow .35s,z-index 0s}
+.card.peek .more{max-height:180px}
+.card.peek .info p{-webkit-line-clamp:unset}
+.card.peek .art svg.pattern{transform:scale(1.15) rotate(2deg)}
+@media (hover:hover){
   .card:hover,.card:focus-visible{transform:scale(1.1) translateY(-8px);z-index:5;box-shadow:0 24px 60px #000c;transition:transform .35s var(--ease) .15s,box-shadow .35s .15s,z-index 0s}
-  .card:hover .more,.card:focus-visible .more{max-height:160px}
+  .card:hover .more,.card:focus-visible .more{max-height:180px}
   .card:hover .art svg.pattern{transform:scale(1.15) rotate(2deg)}
-  .card:hover .info p{-webkit-line-clamp:unset}
+  .card:hover .info p,.card:focus-visible .info p{-webkit-line-clamp:unset}
 }
-@media (hover:none),(max-width:899px){.card .more{max-height:none}}
+.tap-hint{display:none}
+@media (hover:none){.tap-hint{display:inline}}
 
 /* top 10 style */
 .top .card{flex-basis:clamp(240px,24vw,310px)}
@@ -179,20 +191,21 @@ body.ready .hero-art{animation:artIn 1.8s var(--ease) both}
 .genres{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
 .genre{position:relative;padding:22px 22px 24px;border-radius:10px;background:var(--ink-2);border:1px solid #ffffff10;overflow:hidden;transition:border-color .3s,transform .3s var(--ease)}
 .genre::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),#E2B05A1f,transparent 50%);opacity:0;transition:opacity .3s}
-.genre:hover{border-color:#E2B05A55;transform:translateY(-3px)}
-.genre:hover::before{opacity:1}
+.genre.peek{border-color:#E2B05A55;transform:translateY(-3px)}
+.genre.peek::before{opacity:1}
+@media (hover:hover){.genre:hover{border-color:#E2B05A55;transform:translateY(-3px)}.genre:hover::before{opacity:1}.genre li:hover{background:var(--brass);color:var(--ink);border-color:var(--brass)}}
 .genre h3{font-family:var(--display);font-weight:800;font-size:28px;line-height:1;margin-bottom:4px;position:relative}
 .genre .count{color:var(--muted);font-size:14px;position:relative}
 .genre ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;position:relative}
 .genre li{font-size:14px;padding:4px 11px;border-radius:20px;background:#ffffff0d;border:1px solid #ffffff14;transition:background .2s,color .2s,border-color .2s}
-.genre li:hover{background:var(--brass);color:var(--ink);border-color:var(--brass)}
 
 /* ---------- Awards ---------- */
 .awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
 .award{padding:24px 22px;border-radius:10px;background:linear-gradient(160deg,#1B2338,#121829);border:1px solid #E2B05A2a;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .3s}
 .award::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff1c,transparent);transform:skewX(-20deg);transition:left .8s var(--ease)}
-.award:hover{transform:translateY(-4px);border-color:#E2B05A88}
-.award:hover::after{left:130%}
+.award.peek{transform:translateY(-4px);border-color:#E2B05A88}
+.award.peek::after{left:130%}
+@media (hover:hover){.award:hover{transform:translateY(-4px);border-color:#E2B05A88}.award:hover::after{left:130%}}
 .award .laurel{width:34px;height:34px;color:var(--brass);margin-bottom:12px}
 .award strong{display:block;font-family:var(--display);font-weight:800;font-size:25px;line-height:1.05}
 .award span{display:block;color:var(--muted);font-size:14.5px;margin-top:6px}
@@ -254,13 +267,36 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
 .slide.on .big,.slide.on .txt,.slide.on .k{animation:slideUp .8s var(--ease) both}
 .slide.on .txt{animation-delay:.12s}
 @keyframes slideUp{from{opacity:0;transform:translateY(26px)}}
-.slide.photo{background:linear-gradient(90deg,#05070d 40%,#05070d00 70%),linear-gradient(0deg,#05070d,#05070d00 22%),url(assets/portrait-1100.webp) right 22%/60% auto no-repeat}
+.slide.photo{padding-right:52%;background:url(assets/portrait-1100.webp) right bottom/auto 100% no-repeat}
 .slide.photo .big{max-width:6ch}
 .tap{position:absolute;top:0;bottom:0;width:35%;z-index:2}
 .tap.prev{left:0}.tap.next{right:0}
 .trailer-hint{position:absolute;bottom:14px;left:20px;font-size:13px;color:var(--muted);z-index:3}
 
 /* ---------- Responsive ---------- */
+@media (min-width:600px) and (max-width:899px){
+  .ep{grid-template-columns:minmax(200px,40%) 1fr !important;gap:20px !important}
+}
+@media (max-width:599px){
+  .season-tabs{flex-wrap:nowrap;overflow-x:auto;max-width:100%;scrollbar-width:none}
+  .season-tabs::-webkit-scrollbar{display:none}
+  .season-tabs button{flex:0 0 auto}
+}
+@media (min-width:1200px){
+  .hero{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .hero-art{max-width:760px}
+}
+@media (max-width:1023px){
+  .hero{grid-template-columns:1fr;min-height:0;padding-top:72px}
+  .hero-art{grid-column:1;grid-row:1;height:clamp(280px,46svh,520px);max-width:560px}
+  .hero-art img{-webkit-mask-image:linear-gradient(to bottom,#000 82%,transparent 100%);mask-image:linear-gradient(to bottom,#000 82%,transparent 100%)}
+  .hero-copy{grid-column:1;grid-row:2;align-self:start;padding-block:18px clamp(40px,7vw,72px)}
+  .hero h1{font-size:clamp(60px,13vw,124px)}
+}
+@media (max-width:599px){
+  .hero-art{height:clamp(240px,40svh,360px)}
+  .hero .meta{font-size:15px;gap:6px 12px}
+}
 @media (max-width:899px){
   nav ul{display:none}
   nav ul.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#0A0E1Af7;padding:8px var(--pad) 18px;border-bottom:1px solid #ffffff14}
@@ -268,18 +304,16 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
   .menu-btn{display:grid;place-items:center;width:40px;height:40px}
   .menu-btn svg{width:24px;stroke:var(--paper);stroke-width:2}
   nav .btn-sm{display:none}
-  .hero{align-items:flex-end;padding-top:0}
-  .hero-art{width:100%;height:64%;inset:0 0 auto 0}
-  .hero-art::after{background:linear-gradient(0deg,var(--ink) 14%,#0A0E1Acc 38%,#0A0E1A00 72%),linear-gradient(180deg,#0A0E1Aaa,#0A0E1A00 25%)}
   .impact{grid-template-columns:repeat(2,1fr)}
   .impact div,.impact div:first-child{padding:24px 20px}
-  .ep{grid-template-columns:1fr;gap:12px;padding:16px 0}
+  .ep{grid-template-columns:1fr;gap:12px;padding:14px;margin-inline:-14px}
   .ep .num{display:none}
-  .ep .thumb{max-width:none}
+  .ep .thumb{max-width:560px}
   .sheet .body{grid-template-columns:1fr;padding:6px 22px 28px}
   .sheet .banner h3{left:22px}
   #trailer .sheet{aspect-ratio:auto;height:min(78vh,640px)}
-  .slide.photo{background:linear-gradient(0deg,#05070d 45%,#05070d55),url(assets/portrait-600.webp) center 10%/cover no-repeat}
+  .slide.photo{padding:46% 8% 8%;align-content:end;background:url(assets/portrait-600.webp) center 34px/auto 44% no-repeat}
+  .slide.photo .big{font-size:clamp(44px,13vw,72px)}
   .arrows{display:none}
 }
 @media (prefers-reduced-motion:reduce){
@@ -317,7 +351,7 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
 <main id="top">
 <header class="hero">
   <div class="hero-art" id="heroArt">
-    <img src="assets/portrait-1100.webp" srcset="assets/portrait-600.webp 600w, assets/portrait-1100.webp 1100w" sizes="(max-width:899px) 100vw, 62vw" alt="Amey Thakare in a dark suit and striped tie, smiling">
+    <img src="assets/portrait-1100.webp" srcset="assets/portrait-600.webp 600w, assets/portrait-1100.webp 1100w" sizes="(max-width:1023px) 560px, 46vw" alt="Amey Thakare in a dark suit and striped tie, smiling">
   </div>
   <div class="wrap hero-copy" id="heroCopy">
     <div class="rank" data-in style="--i:0"><span class="tag">NEW</span> Season 4 now streaming</div>
@@ -357,7 +391,7 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
 
 <section id="originals" class="row">
   <div class="wrap row-head">
-    <div><h2 class="row-title">Originals</h2><p class="row-sub">Programs and projects, each with the result it delivered. Select one for the full story.</p></div>
+    <div><h2 class="row-title">Originals</h2><p class="row-sub">Programs and projects, each with the result it delivered. <span class="tap-hint">Tap a card to preview it, tap again for </span>the full story.</p></div>
     <div class="arrows"><button data-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button data-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
   </div>
   <div class="rail" id="originalsRail"></div>
@@ -431,26 +465,26 @@ const G = {
 const seasons = [
   { id:'s1', label:'Season 1', title:'The engineer', years:'VNIT Nagpur, graduated 2019',
     eps:[
-      {t:'Foundations', meta:'B.Tech Civil Engineering', stat:'3.6', g:G.slate, d:'Bachelor of Technology in Civil Engineering at Visvesvaraya National Institute of Technology. Systems thinking, project scheduling and the habit of planning backwards from a deadline.'},
+      {art:'bridge',t:'Foundations', meta:'B.Tech Civil Engineering', stat:'3.6', g:G.slate, d:'Bachelor of Technology in Civil Engineering at Visvesvaraya National Institute of Technology. Systems thinking, project scheduling and the habit of planning backwards from a deadline.'},
     ]},
   { id:'s2', label:'Season 2', title:'The analyst', years:'GEP Worldwide, May 2019 – May 2021',
     eps:[
-      {t:'What gets measured', meta:'Senior Business Analyst', stat:'KPI', g:G.steel, d:'Defined KPIs and built performance reporting with SQL and advanced Excel in a client-facing role, giving management clear visibility into spend and process performance.'},
-      {t:'Automate the manual', meta:'Senior Business Analyst', stat:'−20%', g:G.teal, d:'Automated manual reporting and analysis workflows with SQL and VBA, cutting process delays by 20% and cost overruns by 15%.'},
-      {t:'The forecast', meta:'Senior Business Analyst', stat:'$56M', g:G.brass, d:'Engineered data analytics and forecasting solutions that delivered $56M in cost savings and an 18% improvement in cost efficiency.'},
+      {art:'kpi',t:'What gets measured', meta:'Senior Business Analyst', stat:'KPI', g:G.steel, d:'Defined KPIs and built performance reporting with SQL and advanced Excel in a client-facing role, giving management clear visibility into spend and process performance.'},
+      {art:'gears',t:'Automate the manual', meta:'Senior Business Analyst', stat:'−20%', g:G.teal, d:'Automated manual reporting and analysis workflows with SQL and VBA, cutting process delays by 20% and cost overruns by 15%.'},
+      {art:'forecast',t:'The forecast', meta:'Senior Business Analyst', stat:'$56M', g:G.brass, d:'Engineered data analytics and forecasting solutions that delivered $56M in cost savings and an 18% improvement in cost efficiency.'},
     ]},
   { id:'s3', label:'Season 3', title:'The consultant', years:'GEP Worldwide, May 2021 – Jul 2024',
     eps:[
-      {t:'Transformation', meta:'Business Consultant', stat:'+22%', g:G.steel, d:'Drove end-to-end delivery of procurement transformation programs for enterprise clients, mapping current-state processes and re-engineering procedures, SOPs and policies to raise operational efficiency by 22%.'},
-      {t:'Mergers, acquisitions, spinoffs', meta:'Business Consultant', stat:'M&A', g:G.plum, d:'Managed requirements, milestones and risk mitigation plans with cross-functional stakeholders on merger, acquisition and spinoff integrations, keeping operations running through organizational change.'},
-      {t:'The liaison', meta:'Business Consultant', stat:'$208M', g:G.brass, d:'Primary liaison between client senior leadership and technical delivery teams, turning business objectives into automated BI dashboards and analytics models that delivered $208M in cost savings and a 16% cut in procurement costs.'},
-      {t:'The playbook', meta:'Business Consultant', stat:'SOP', g:G.teal, d:'Standardized delivery playbooks and best practices, and led training and onboarding to drive adoption of repeatable ways of working across teams.'},
+      {art:'process',t:'Transformation', meta:'Business Consultant', stat:'+22%', g:G.steel, d:'Drove end-to-end delivery of procurement transformation programs for enterprise clients, mapping current-state processes and re-engineering procedures, SOPs and policies to raise operational efficiency by 22%.'},
+      {art:'merge',t:'Mergers, acquisitions, spinoffs', meta:'Business Consultant', stat:'M&A', g:G.plum, d:'Managed requirements, milestones and risk mitigation plans with cross-functional stakeholders on merger, acquisition and spinoff integrations, keeping operations running through organizational change.'},
+      {art:'liaison',t:'The liaison', meta:'Business Consultant', stat:'$208M', g:G.brass, d:'Primary liaison between client senior leadership and technical delivery teams, turning business objectives into automated BI dashboards and analytics models that delivered $208M in cost savings and a 16% cut in procurement costs.'},
+      {art:'playbook',t:'The playbook', meta:'Business Consultant', stat:'SOP', g:G.teal, d:'Standardized delivery playbooks and best practices, and led training and onboarding to drive adoption of repeatable ways of working across teams.'},
     ]},
   { id:'s4', label:'Season 4', title:'The strategist', years:'UT Dallas, through Dec 2026',
     eps:[
-      {t:'Double degree', meta:'MS Business Analytics & AI + MBA', stat:'4.0', g:G.brass, d:'Scholar with High Distinction in both the MS and MBA programs. Phi Kappa Phi, Beta Gamma Sigma, Dean’s Excellence Scholarship and the H.R. Saboowala International Merit Fellowship.'},
-      {t:'Value realization', meta:'Capstone, Aug 2026 – now', stat:'AI', g:G.ember, d:'Building an integrated value realization system for a global eyecare company, with function-level KPI dashboards and an AI copilot for querying performance.'},
-      {t:'Running the clubs', meta:'Leadership, Jan 2026 – now', stat:'PMC', g:G.plum, d:'President of the Project Management Club and Assistant Vice President of Operations for INFORMS at UT Dallas.'},
+      {art:'degree',t:'Double degree', meta:'MS Business Analytics & AI + MBA', stat:'4.0', g:G.brass, d:'Scholar with High Distinction in both the MS and MBA programs. Phi Kappa Phi, Beta Gamma Sigma, Dean’s Excellence Scholarship and the H.R. Saboowala International Merit Fellowship.'},
+      {art:'value',t:'Value realization', meta:'Capstone, Aug 2026 – now', stat:'AI', g:G.ember, d:'Building an integrated value realization system for a global eyecare company, with function-level KPI dashboards and an AI copilot for querying performance.'},
+      {art:'clubs',t:'Running the clubs', meta:'Leadership, Jan 2026 – now', stat:'PMC', g:G.plum, d:'President of the Project Management Club and Assistant Vice President of Operations for INFORMS at UT Dallas.'},
     ]},
 ];
 
@@ -541,6 +575,99 @@ function pattern(seed){
   return `<svg class="pattern" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#fff" stroke-width="1.2" aria-hidden="true">${p}</svg>`;
 }
 
+/* ================= Episode illustrations ================= */
+const W='#fff', B='#F4D79A', K='#0A0E1A';
+function grid(op){let g='';for(let x=20;x<320;x+=20)g+=`M${x} 0V180`;for(let y=20;y<180;y+=20)g+=`M0 ${y}H320`;return `<path d="${g}" stroke="${W}" stroke-width=".6" opacity="${op}"/>`;}
+function person(x,y,s=1){return `<g transform="translate(${x} ${y}) scale(${s})"><circle cx="0" cy="0" r="10" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2.2"/><path d="M-18 34 Q-18 14 0 14 Q18 14 18 34" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2.2"/></g>`;}
+const ARTS={
+bridge:`${grid(.13)}
+ <path d="M40 40H280M40 34V46M280 34V46" stroke="${B}" stroke-width="1.6"/>
+ <g fill="none" stroke="${W}" stroke-width="2.4" stroke-linejoin="round">
+  <path d="M28 112H292M28 121H292"/>
+  <path d="M40 112L70 66L100 112L130 66L160 112L190 66L220 112L250 66L280 112M70 66H250"/>
+ </g>
+ <rect x="92" y="121" width="16" height="33" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2"/>
+ <rect x="212" y="121" width="16" height="33" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2"/>
+ <path d="M14 154H306" stroke="${W}" stroke-width="2"/>
+ <path d="M24 166q10-6 20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0t20 0" fill="none" stroke="${W}" stroke-width="1.6" opacity=".6"/>
+ ${[70,130,190,250].map(x=>`<circle cx="${x}" cy="66" r="3" fill="${B}"/>`).join('')}${[40,100,160,220,280].map(x=>`<circle cx="${x}" cy="112" r="3" fill="${B}"/>`).join('')}`,
+kpi:`<rect x="36" y="26" width="248" height="128" rx="10" fill="${K}" fill-opacity=".4" stroke="${W}" stroke-opacity=".6" stroke-width="1.6"/>
+ <rect x="52" y="40" width="64" height="6" rx="3" fill="${W}" opacity=".55"/><rect x="52" y="52" width="40" height="5" rx="2.5" fill="${W}" opacity=".3"/>
+ <path d="M62 132A46 46 0 0 1 154 132" fill="none" stroke="${W}" stroke-opacity=".3" stroke-width="10"/>
+ <path d="M62 132A46 46 0 0 1 135 95" fill="none" stroke="${B}" stroke-width="10" stroke-linecap="round"/>
+ <path d="M108 132L130 104" stroke="${W}" stroke-width="3" stroke-linecap="round"/><circle cx="108" cy="132" r="5" fill="${W}"/>
+ <path d="M176 80H272" stroke="${B}" stroke-width="1.6" stroke-dasharray="4 4"/>
+ ${[[184,30],[208,48],[232,40],[256,66]].map(([x,h])=>`<rect x="${x}" y="${140-h}" width="15" height="${h}" rx="2" fill="${W}" opacity="${h>60?1:.75}"/>`).join('')}
+ <path d="M176 140H280" stroke="${W}" stroke-opacity=".5" stroke-width="1.4"/>`,
+gears:`<circle cx="112" cy="106" r="34" fill="none" stroke="${W}" stroke-width="12" stroke-dasharray="7 6.3"/>
+ <circle cx="112" cy="106" r="25" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2.2"/><circle cx="112" cy="106" r="7" fill="${B}"/>
+ <circle cx="166" cy="62" r="21" fill="none" stroke="${W}" stroke-width="9" stroke-dasharray="5 4.6"/>
+ <circle cx="166" cy="62" r="14" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2"/><circle cx="166" cy="62" r="4.5" fill="${B}"/>
+ <rect x="210" y="48" width="84" height="98" rx="6" fill="${K}" fill-opacity=".4" stroke="${W}" stroke-width="2"/>
+ <rect x="211" y="93" width="82" height="21" fill="${B}" opacity=".45"/>
+ <path d="M210 70H294M210 92H294M210 114H294M238 48V146M266 48V146" stroke="${W}" stroke-opacity=".55" stroke-width="1.4"/>
+ <path d="M150 136C172 152 192 150 204 138" fill="none" stroke="${B}" stroke-width="2.4"/><path d="M196 134l10 2-3 10" fill="none" stroke="${B}" stroke-width="2.4" stroke-linejoin="round"/>
+ <path d="M206 16L192 40H203L196 58L218 32H206L213 16Z" fill="${B}"/>`,
+forecast:`<path d="M40 60H292M40 90H292M40 120H292" stroke="${W}" stroke-opacity=".15" stroke-width="1"/>
+ <path d="M40 28V146H292" fill="none" stroke="${W}" stroke-opacity=".7" stroke-width="2"/>
+ <path d="M184 86L290 30V86Z" fill="${W}" opacity=".14"/>
+ <path d="M184 28V146" stroke="${W}" stroke-opacity=".55" stroke-width="1.4" stroke-dasharray="3 4"/>
+ <path d="M44 132L66 120L88 126L112 104L136 110L160 94L184 86" fill="none" stroke="${W}" stroke-width="2.8" stroke-linejoin="round"/>
+ ${[[66,120],[88,126],[112,104],[136,110],[160,94]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="3" fill="${W}"/>`).join('')}
+ <path d="M184 86L212 76L238 70L264 60L290 54" fill="none" stroke="${B}" stroke-width="2.8" stroke-dasharray="7 5"/>
+ <circle cx="184" cy="86" r="6" fill="${B}" stroke="${K}" stroke-width="2"/>`,
+process:`<path d="M30 64C70 24 92 126 58 114S36 58 84 74S116 142 72 138S40 98 30 112" fill="none" stroke="${W}" stroke-opacity=".6" stroke-width="2.2"/>
+ ${[[40,58],[80,72],[60,112],[74,136]].map(([x,y])=>`<rect x="${x-6}" y="${y-6}" width="12" height="12" rx="2" fill="${K}" fill-opacity=".5" stroke="${W}" stroke-opacity=".7" stroke-width="1.6"/>`).join('')}
+ <path d="M122 90H178" stroke="${B}" stroke-width="5" stroke-linecap="round"/><path d="M166 76L182 90L166 104" fill="none" stroke="${B}" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+ ${[34,74,114].map(y=>`<rect x="200" y="${y}" width="92" height="28" rx="6" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2"/><path d="M210 ${y+14}l5 5 9-10" fill="none" stroke="${B}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><rect x="232" y="${y+11}" width="48" height="6" rx="3" fill="${W}" opacity=".55"/>`).join('')}
+ <path d="M246 62V74M246 102V114" stroke="${W}" stroke-width="2"/>`,
+merge:`<defs><clipPath id="lens"><circle cx="128" cy="90" r="46"/></clipPath></defs>
+ <circle cx="128" cy="90" r="46" fill="${W}" fill-opacity=".1" stroke="${W}" stroke-width="2.2"/>
+ <circle cx="192" cy="90" r="46" fill="${W}" fill-opacity=".1" stroke="${W}" stroke-width="2.2"/>
+ <circle cx="192" cy="90" r="46" fill="${B}" fill-opacity=".55" clip-path="url(#lens)"/>
+ <path d="M30 40C60 38 80 44 94 56" fill="none" stroke="${W}" stroke-width="2.4"/><path d="M84 50l11 7-5 12" fill="none" stroke="${W}" stroke-width="2.4" stroke-linejoin="round"/>
+ <path d="M290 40C260 38 240 44 226 56" fill="none" stroke="${W}" stroke-width="2.4"/><path d="M236 50l-11 7 5 12" fill="none" stroke="${W}" stroke-width="2.4" stroke-linejoin="round"/>
+ <path d="M200 138C228 160 254 160 270 148" fill="none" stroke="${B}" stroke-width="2.4" stroke-dasharray="5 4"/>
+ <circle cx="284" cy="142" r="12" fill="${K}" fill-opacity=".45" stroke="${B}" stroke-width="2.4"/>`,
+liaison:`${person(52,82,.95)}${person(104,82,.95)}${person(78,72,1.05)}
+ <path d="M126 96C150 60 184 60 206 90" fill="none" stroke="${W}" stroke-width="2" stroke-dasharray="3 5"/>
+ <circle cx="146" cy="74" r="4" fill="${B}"/><circle cx="186" cy="70" r="4" fill="${B}"/>
+ <rect x="138" y="22" width="48" height="24" rx="8" fill="${W}" opacity=".92"/><path d="M150 46l-4 10 12-10" fill="${W}" opacity=".92"/>
+ ${[150,162,174].map(x=>`<circle cx="${x}" cy="34" r="2.6" fill="${K}"/>`).join('')}
+ <rect x="214" y="60" width="80" height="52" rx="4" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2"/>
+ <path d="M204 116H304L296 126H212Z" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2" stroke-linejoin="round"/>
+ ${[[226,18],[242,28],[258,22],[274,38]].map(([x,h])=>`<rect x="${x}" y="${104-h}" width="10" height="${h}" fill="${B}"/>`).join('')}`,
+playbook:`<path d="M160 50C130 40 92 40 62 48V142C92 134 130 134 160 144Z" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2.2" stroke-linejoin="round"/>
+ <path d="M160 50C190 40 228 40 258 48V142C228 134 190 134 160 144Z" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2.2" stroke-linejoin="round"/>
+ ${[66,80,94,108,122].map((y,i)=>`<path d="M78 ${y}H${[144,138,146,128,140][i]}" stroke="${W}" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>`).join('')}
+ ${[68,88,108].map(y=>`<rect x="176" y="${y-7}" width="13" height="13" rx="2" fill="none" stroke="${W}" stroke-width="1.8"/><path d="M178 ${y}l4 4 8-9" fill="none" stroke="${B}" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M198 ${y}H242" stroke="${W}" stroke-opacity=".6" stroke-width="2.2" stroke-linecap="round"/>`).join('')}
+ <path d="M226 38V66L232 60L238 66V38Z" fill="${B}"/>`,
+degree:`<path d="M58 146C34 112 40 70 70 42M262 146C286 112 280 70 250 42" fill="none" stroke="${B}" stroke-width="2.2" opacity=".85"/>
+ ${[[56,124],[48,100],[50,76],[60,56]].map(([x,y])=>`<ellipse cx="${x}" cy="${y}" rx="9" ry="4" transform="rotate(-40 ${x} ${y})" fill="${B}" opacity=".75"/><ellipse cx="${320-x}" cy="${y}" rx="9" ry="4" transform="rotate(40 ${320-x} ${y})" fill="${B}" opacity=".75"/>`).join('')}
+ <g><path d="M128 54L176 72L128 90L80 72Z" fill="${K}" fill-opacity=".55" stroke="${W}" stroke-width="2.2" stroke-linejoin="round"/>
+ <path d="M102 82V100C116 112 140 112 154 100V82" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2.2"/>
+ <path d="M128 72L168 76V100" fill="none" stroke="${B}" stroke-width="2.2"/><circle cx="168" cy="103" r="4" fill="${B}"/></g>
+ <g transform="translate(70 26) scale(.86)"><path d="M128 54L176 72L128 90L80 72Z" fill="${K}" fill-opacity=".55" stroke="${W}" stroke-width="2.4" stroke-linejoin="round"/>
+ <path d="M102 82V100C116 112 140 112 154 100V82" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2.4"/>
+ <path d="M128 72L168 76V100" fill="none" stroke="${B}" stroke-width="2.4"/><circle cx="168" cy="103" r="4" fill="${B}"/></g>`,
+value:`<rect x="30" y="28" width="196" height="126" rx="8" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-opacity=".75" stroke-width="1.8"/>
+ ${[44,54,64].map(x=>`<circle cx="${x}" cy="40" r="3" fill="${W}" opacity=".6"/>`).join('')}
+ ${[42,102,162].map((x,i)=>`<rect x="${x}" y="52" width="52" height="32" rx="4" fill="none" stroke="${W}" stroke-opacity=".55" stroke-width="1.4"/><rect x="${x+8}" y="62" width="${[22,30,16][i]}" height="5" rx="2.5" fill="${W}" opacity=".7"/><rect x="${x+8}" y="72" width="${[30,20,34][i]}" height="5" rx="2.5" fill="${B}"/>`).join('')}
+ <path d="M44 140L74 124L102 130L132 110L160 114L196 98" fill="none" stroke="${B}" stroke-width="2.6" stroke-linejoin="round"/>
+ <rect x="192" y="92" width="106" height="54" rx="14" fill="${W}" opacity=".94"/><path d="M212 146l-8 14 22-14Z" fill="${W}" opacity=".94"/>
+ <path d="M220 104Q222 117 234 119Q222 121 220 134Q218 121 206 119Q218 117 220 104Z" fill="#C8913A"/>
+ <rect x="242" y="108" width="44" height="6" rx="3" fill="${K}" opacity=".55"/><rect x="242" y="121" width="32" height="6" rx="3" fill="${K}" opacity=".35"/>`,
+clubs:`<rect x="236" y="24" width="56" height="48" rx="6" fill="${K}" fill-opacity=".45" stroke="${W}" stroke-width="2"/>
+ <path d="M236 36H292" stroke="${B}" stroke-width="12"/><path d="M250 18V30M278 18V30" stroke="${W}" stroke-width="2.4" stroke-linecap="round"/>
+ ${[[248,52],[262,52],[276,52],[248,62],[262,62]].map(([x,y])=>`<rect x="${x-3}" y="${y-3}" width="6" height="6" rx="1" fill="${W}" opacity=".7"/>`).join('')}<rect x="273" y="59" width="6" height="6" rx="1" fill="${B}"/>
+ ${person(160,64,1.25)}
+ <path d="M184 52Q194 62 184 72M192 46Q206 62 192 78" fill="none" stroke="${B}" stroke-width="2.2" stroke-linecap="round"/>
+ <path d="M124 104H196L188 158H132Z" fill="${K}" fill-opacity=".55" stroke="${W}" stroke-width="2.2" stroke-linejoin="round"/>
+ <circle cx="160" cy="128" r="10" fill="none" stroke="${B}" stroke-width="2.4"/><path d="M155 128l4 4 6-8" fill="none" stroke="${B}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+ ${person(98,152,.95)}${person(226,152,.95)}${person(266,146,.95)}`,
+};
+function art(k){return `<svg class="art" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true"><rect width="320" height="180" fill="${K}" opacity=".2"/>${ARTS[k]||''}</svg>`;}
+
 /* ================= Render ================= */
 // Intro letters
 document.querySelectorAll('#intro .word').forEach((w,wi)=>{
@@ -558,9 +685,9 @@ function showSeason(i,animate){
   tabs.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));
   desc.textContent=`${s.title}. ${s.years}`;
   list.innerHTML=s.eps.map((e,n)=>`
-    <article class="ep">
+    <article class="ep" tabindex="0">
       <div class="num">${n+1}</div>
-      <div class="thumb" style="--g:${e.g}">${pattern(e.t)}<span class="stat">${esc(e.stat)}</span><span class="play"><svg viewBox="0 0 24 24"><path d="M6 4v16l14-8z"/></svg></span><span class="progress"><i style="--w:${100-n*12}%"></i></span></div>
+      <div class="thumb" style="--g:${e.g}">${art(e.art)}<span class="stat">${esc(e.stat)}</span><span class="play"><svg viewBox="0 0 24 24"><path d="M6 4v16l14-8z"/></svg></span><span class="progress"><i style="--w:${100-n*12}%"></i></span></div>
       <div><h3>${esc(e.t)}<small>${esc(e.meta)}</small></h3><p>${esc(e.d)}</p></div>
     </article>`).join('');
   if(animate){list.classList.remove('swap');void list.offsetWidth;list.classList.add('swap');}
@@ -605,6 +732,8 @@ else{
 /* ================= Nav ================= */
 const nav=$('#nav');let lastY=0;
 const heroArt=$('#heroArt'), heroCopy=$('#heroCopy');
+const wide=matchMedia('(min-width:1024px)');
+wide.addEventListener('change',onScroll);
 function onScroll(){
   const y=scrollY;
   nav.classList.toggle('solid',y>40);
@@ -612,9 +741,14 @@ function onScroll(){
   lastY=y;
   if(!reduced&&y<innerHeight*1.2){
     const p=y/innerHeight;
-    heroArt.style.transform=`translateY(${y*.25}px) scale(${1+p*.08})`;
-    heroCopy.style.transform=`translateY(${y*.12}px)`;
-    heroCopy.style.opacity=Math.max(0,1-p*1.4);
+    if(wide.matches){
+      heroArt.style.transform=`translateY(${y*.22}px) scale(${1-p*.06})`;
+      heroCopy.style.transform=`translateY(${y*.1}px)`;
+      heroCopy.style.opacity=Math.max(0,1-p*1.3);
+    }else{
+      heroArt.style.transform=`translateY(${-y*.12}px) scale(${1-p*.08})`;
+      heroCopy.style.transform='';heroCopy.style.opacity='';
+    }
   }
 }
 addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});
@@ -633,7 +767,9 @@ function countUp(el){
 const cObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('[data-count]').forEach(countUp);cObs.unobserve(e.target);}}),{threshold:.4});
 cObs.observe($('#impact'));
 const epObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');epObs.unobserve(e.target);}}),{threshold:.6});
-function observeEps(){list.querySelectorAll('.ep').forEach((el,i)=>{el.querySelector('.progress i').style.transitionDelay=(i*0.15)+'s';epObs.observe(el);});}
+const touchOnly=matchMedia('(hover:none)');
+const midObs=new IntersectionObserver(es=>es.forEach(e=>{if(touchOnly.matches)e.target.classList.toggle('peek',e.isIntersecting);}),{rootMargin:'-48% 0px -48% 0px'});
+function observeEps(){list.querySelectorAll('.ep').forEach((el,i)=>{el.querySelector('.progress i').style.transitionDelay=(i*0.15)+'s';epObs.observe(el);midObs.observe(el);});}
 showSeason(seasons.length-2,false);
 const fObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');fObs.unobserve(e.target);}}),{threshold:.5});
 fObs.observe($('#contact'));
@@ -654,8 +790,23 @@ addEventListener('keydown',e=>{const m=$('.modal.open');if(!m)return;if(e.key===
   if(e.key==='Tab'){const f=[...m.querySelectorAll('button,a[href]')].filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
 });
 
+let lastPtr='mouse';
+addEventListener('pointerdown',e=>{lastPtr=e.pointerType||'mouse';},{capture:true,passive:true});
+function clearPeek(keep){document.querySelectorAll('.card.peek,.genre.peek,.award.peek'+(keep&&keep.classList.contains('ep')?',.ep.peek':'')).forEach(el=>{if(el!==keep)el.classList.remove('peek');});}
 document.addEventListener('click',e=>{
-  const c=e.target.closest('.card');if(!c)return;
+  if(e.target.closest('.modal'))return;
+  const touch=e.detail>0&&lastPtr!=='mouse';
+  const c=e.target.closest('.card');
+  if(c){
+    if(touch&&!c.classList.contains('peek')){clearPeek(c);c.classList.add('peek');c.scrollIntoView({behavior:reduced?'auto':'smooth',block:'nearest',inline:'nearest'});return;}
+    openProject(c);return;
+  }
+  const t=e.target.closest('.genre,.award,.ep');
+  if(t&&touch){const on=!t.classList.contains('peek');clearPeek();document.querySelectorAll('.ep.peek').forEach(x=>x.classList.remove('peek'));if(on){t.classList.add('peek');if(t.classList.contains('genre')){const r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px');}}return;}
+  clearPeek();
+});
+function openProject(c){
+  c.classList.remove('peek');
   const o=all.find(x=>x.id===c.dataset.id);
   $('#pmSheet').innerHTML=`
     <button class="close" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -669,7 +820,7 @@ document.addEventListener('click',e=>{
       <div class="side"><div><b>Role:</b> ${esc(o.role)}</div><div><b>Tools and themes:</b> ${o.tags.map(esc).join(', ')}</div></div>
     </div>`;
   openModal($('#projModal'));
-});
+}
 
 /* ================= Trailer ================= */
 const DUR=5200;let ti=0,timer=null,paused=false,startT=0,left=DUR;
