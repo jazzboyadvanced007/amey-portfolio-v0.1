@@ -308,6 +308,33 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
 .tap.prev{left:0}.tap.next{right:0}
 .trailer-hint{position:absolute;bottom:14px;left:20px;font-size:13px;color:var(--muted);z-index:3}
 
+
+/* ---------- Connect pop-up ---------- */
+.connect-sheet{width:min(520px,100%);padding:38px 34px 32px;background:linear-gradient(165deg,#1B2338,#121829 60%)}
+.connect-sheet::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,transparent,var(--brass),transparent)}
+.c-kicker{color:var(--steel);font-size:15px;margin-bottom:8px}
+.connect-sheet h3{font-family:var(--display);font-weight:900;font-size:clamp(36px,6vw,48px);line-height:.95;text-transform:uppercase;margin-bottom:24px;padding-right:36px}
+.connect-sheet .actions{display:flex;flex-wrap:wrap;gap:12px}
+.c-step[hidden]{display:none}
+.c-form{display:grid;gap:16px}
+.c-form label{display:grid;gap:7px;font-size:14.5px;font-weight:600;color:#d6d1c7}
+.c-form input,.c-form select{font:inherit;font-weight:400;color:var(--paper);background:#0A0E1A;border:1px solid #ffffff2a;border-radius:6px;padding:12px 14px;transition:border-color .2s,box-shadow .2s;appearance:none;-webkit-appearance:none}
+.c-form select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23EEE8DC' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:16px;padding-right:40px}
+.c-form input:focus,.c-form select:focus{outline:none;border-color:var(--brass);box-shadow:0 0 0 3px #E2B05A33}
+.c-form input[aria-invalid=true]{border-color:#e07a6a}
+.c-err{color:#f0a090;font-size:14px;min-height:0}
+.c-err:empty{display:none}
+.c-form .btn{justify-content:center;margin-top:4px}
+.c-alt{font-size:14px;color:var(--muted)}
+.c-alt:empty{display:none}
+.c-alt a{color:var(--paper)}
+.c-back{font-size:14px;color:var(--muted);text-decoration:underline;justify-self:start}
+.connect-fab{position:fixed;right:clamp(16px,3vw,32px);bottom:clamp(16px,3vw,28px);z-index:60;display:inline-flex;align-items:center;gap:10px;padding:12px 18px 12px 14px;border-radius:40px;background:var(--brass);color:var(--ink);font-weight:700;font-size:15px;box-shadow:0 12px 34px #0009;transition:transform .25s var(--ease),box-shadow .25s;animation:fabIn .5s var(--ease)}
+.connect-fab[hidden]{display:none}
+.connect-fab svg{width:20px;height:20px}
+.connect-fab:hover{transform:translateY(-2px);box-shadow:0 16px 40px #000b}
+@keyframes fabIn{from{opacity:0;transform:translateY(20px)}}
+
 /* ---------- Responsive ---------- */
 @media (min-width:600px) and (max-width:899px){
   .ep{grid-template-columns:minmax(200px,40%) 1fr !important;gap:20px !important}
@@ -484,6 +511,30 @@ footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:fl
 <div class="modal" id="projModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
   <div class="sheet" id="pmSheet"></div>
 </div>
+
+<div class="modal" id="connect" role="dialog" aria-modal="true" aria-labelledby="cTitle">
+  <div class="sheet connect-sheet">
+    <button class="close" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="c-step" id="cAsk">
+      <p class="c-kicker">Thanks for watching</p>
+      <h3 id="cTitle">Would you like to connect with Amey?</h3>
+      <div class="actions"><button class="btn btn-play" id="cYes">Yes</button><button class="btn btn-ghost" id="cLater">Maybe later</button></div>
+    </div>
+    <form class="c-step c-form" id="cForm" novalidate hidden>
+      <p class="c-kicker">Let's connect</p>
+      <label>Name<input name="name" autocomplete="name" required></label>
+      <label>Email ID<input type="email" name="email" autocomplete="email" required></label>
+      <label>Mode of communication
+        <select name="mode" id="cMode"><option value="email">Email</option><option value="phone">Phone</option><option value="linkedin">LinkedIn message</option></select>
+      </label>
+      <p class="c-err" id="cErr" role="alert"></p>
+      <button class="btn btn-play" type="submit" id="cGo">Draft an email to Amey</button>
+      <p class="c-alt" id="cAlt" aria-live="polite"></p>
+      <button type="button" class="c-back" id="cBack">Back</button>
+    </form>
+  </div>
+</div>
+<button class="connect-fab" id="cFab" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Connect with Amey</button>
 
 <div class="modal" id="trailer" role="dialog" aria-modal="true" aria-label="30-second trailer">
   <div class="sheet">
@@ -961,11 +1012,11 @@ document.querySelectorAll('.row').forEach(row=>{
 /* ================= Modals ================= */
 let lastFocus=null;
 function openModal(m){lastFocus=document.activeElement;m.classList.add('open');document.body.classList.add('locked');setTimeout(()=>m.querySelector('.close')?.focus(),50);}
-function closeModal(m){m.classList.remove('open');document.body.classList.remove('locked');lastFocus?.focus();if(m.id==='trailer')stopTrailer();}
+function closeModal(m){m.classList.remove('open');document.body.classList.remove('locked');lastFocus?.focus();if(m.id==='trailer')stopTrailer();if(m.id==='connect')showFab();}
 document.querySelectorAll('.modal').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m||e.target.closest('[data-close]'))closeModal(m);});});
 addEventListener('keydown',e=>{const m=$('.modal.open');if(!m)return;if(e.key==='Escape')closeModal(m);
   if(m.id==='trailer'){if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);if(e.key===' '){e.preventDefault();togglePause();}}
-  if(e.key==='Tab'){const f=[...m.querySelectorAll('button,a[href]')].filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
+  if(e.key==='Tab'){const f=[...m.querySelectorAll('button,a[href],input,select')].filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
 });
 
 let lastPtr='mouse';
@@ -999,6 +1050,52 @@ function openProject(c){
     </div>`;
   openModal($('#projModal'));
 }
+
+
+/* ================= Connect pop-up ================= */
+const AMEY={email:'ameyashok.thakare@utdallas.edu', phone:'+14695586548', phoneShown:'(469) 558-6548', linkedin:'https://www.linkedin.com/in/ameythakare007/'};
+const CM=$('#connect'), cForm=$('#cForm'), cAsk=$('#cAsk'), cFab=$('#cFab'), cGo=$('#cGo'), cAlt=$('#cAlt'), cErr=$('#cErr'), cMode=$('#cMode');
+const MODE_LABEL={email:'Draft an email to Amey', phone:'Call Amey', linkedin:'Message Amey on LinkedIn'};
+function showFab(){cFab.hidden=false;try{sessionStorage.setItem('connectFab','1')}catch(e){}}
+function openConnect(step){
+  cAsk.hidden=step!=='ask'; cForm.hidden=step!=='form'; cErr.textContent=''; cAlt.textContent='';
+  cFab.hidden=true;
+  if(!CM.classList.contains('open'))openModal(CM);
+  setTimeout(()=>{(step==='form'?cForm.querySelector('input'):$('#cYes')).focus();},60);
+}
+$('#cYes').onclick=()=>openConnect('form');
+$('#cLater').onclick=()=>closeModal(CM);
+$('#cBack').onclick=()=>openConnect('ask');
+cFab.onclick=()=>openConnect('ask');
+cMode.onchange=()=>{cGo.textContent=MODE_LABEL[cMode.value];cAlt.textContent='';};
+cForm.addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=cForm.name.value.trim(), email=cForm.email.value.trim(), mode=cMode.value;
+  cForm.name.setAttribute('aria-invalid',!name); cForm.email.setAttribute('aria-invalid',!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+  if(!name){cErr.textContent='Enter your name.';cForm.name.focus();return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){cErr.textContent='Enter a valid email ID, like name@company.com.';cForm.email.focus();return;}
+  cErr.textContent='';
+  const intro=`Hi Amey, I'm ${name} (${email}). I came across your portfolio and would like to connect.`;
+  if(mode==='email'){
+    const url=`mailto:${AMEY.email}?subject=${encodeURIComponent('Connecting from your portfolio: '+name)}&body=${encodeURIComponent(intro+'\n\nBest,\n'+name+'\n'+email)}`;
+    location.href=url;
+    cAlt.innerHTML=`Your email app should open with a draft. If it doesn't, write to <a href="${url}">${AMEY.email}</a>.`;
+  }else if(mode==='phone'){
+    location.href=`tel:${AMEY.phone}`;
+    cAlt.innerHTML=`Your phone app should open with Amey's number. If it doesn't, call <a href="tel:${AMEY.phone}">${AMEY.phoneShown}</a>.`;
+  }else{
+    const w=window.open(AMEY.linkedin,'_blank');if(w){try{w.opener=null;}catch(_){}}
+    const done=ok=>{cAlt.innerHTML=(ok?'We copied a short intro for you. On Amey\u2019s profile, select <b>Message</b> and paste it in.':'On Amey\u2019s profile, select <b>Message</b> to start a chat.')+(w?'':` If LinkedIn didn't open, <a href="${AMEY.linkedin}" target="_blank" rel="noopener">open Amey's profile</a>.`);};
+    try{navigator.clipboard.writeText(intro).then(()=>done(true),()=>done(false));}catch(err){done(false);}
+  }
+});
+// ask once per visit, right after the countdown ring finishes filling
+let cAsked=false;try{cAsked=!!sessionStorage.getItem('connectAsked');if(sessionStorage.getItem('connectFab'))cFab.hidden=false;}catch(e){}
+$('#contact .countdown .fg').addEventListener('transitionend',()=>{
+  if(cAsked||document.querySelector('.modal.open'))return;
+  cAsked=true;try{sessionStorage.setItem('connectAsked','1')}catch(e){}
+  openConnect('ask');
+});
 
 /* ================= Trailer ================= */
 const DUR=5200;let ti=0,timer=null,paused=false,startT=0,left=DUR;
