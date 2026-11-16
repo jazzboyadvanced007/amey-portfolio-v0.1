@@ -149,12 +149,13 @@ body.ready .hero-art img{animation:artIn 1.8s var(--ease) both}
 
 /* ---------- Rows of cards ---------- */
 .row{position:relative}
-.rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px var(--pad) 70px;margin:-34px 0 -50px;scrollbar-width:none}
+.rail{position:relative;display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);padding:34px var(--pad) 70px;margin:-34px 0 -50px;scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
-.row-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.row-head{position:relative;z-index:7;display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
 .arrows{display:flex;gap:8px}
 .arrows button{width:42px;height:42px;border-radius:50%;border:1px solid #ffffff30;display:grid;place-items:center;transition:background .2s,border-color .2s}
 .arrows button:hover{background:#ffffff18;border-color:var(--paper)}
+.arrows button:disabled{opacity:.28;cursor:default;background:none;border-color:#ffffff30}
 .arrows svg{width:18px;stroke:var(--paper);fill:none;stroke-width:2}
 
 .card{flex:0 0 clamp(250px,26vw,340px);scroll-snap-align:start;position:relative;border-radius:8px;background:var(--ink-2);transition:transform .35s var(--ease),box-shadow .35s,z-index 0s .35s;transform-origin:center;text-align:left;cursor:pointer}
@@ -924,7 +925,38 @@ fObs.observe($('#contact'));
 document.querySelectorAll('.genre').forEach(g=>g.addEventListener('pointermove',e=>{const r=g.getBoundingClientRect();g.style.setProperty('--mx',(e.clientX-r.left)+'px');g.style.setProperty('--my',(e.clientY-r.top)+'px');}));
 
 // rail arrows
-document.querySelectorAll('.arrows button').forEach(b=>b.onclick=()=>{const rail=b.closest('.row').querySelector('.rail');rail.scrollBy({left:+b.dataset.dir*rail.clientWidth*.8,behavior:'smooth'});});
+function railMax(r){return r.scrollWidth-r.clientWidth;}
+function railUpdate(row){
+  const r=row.querySelector('.rail'),bs=row.querySelectorAll('.arrows button');if(bs.length<2)return;
+  const x=r._t??r.scrollLeft, max=railMax(r);
+  bs[0].disabled=x<=4; bs[1].disabled=x>=max-4;
+  row.querySelector('.arrows').style.visibility=max<8?'hidden':'';
+}
+function railGo(row,dir){
+  const r=row.querySelector('.rail'),cards=[...r.querySelectorAll('.card')];if(!cards.length)return;
+  const pad=parseFloat(getComputedStyle(r).paddingLeft)||0, view=r.clientWidth-2*pad, max=railMax(r);
+  const x=r._t??r.scrollLeft, lefts=cards.map(c=>c.offsetLeft-pad);
+  let t;
+  if(dir>0){
+    const i=cards.findIndex(c=>c.offsetLeft+c.offsetWidth-pad>x+view+4);
+    t=i<0?max:lefts[i];
+  }else{
+    const i=lefts.findIndex(l=>l>=x-view-4);
+    t=(i<0?0:lefts[i]); if(t>=x-4) t=lefts[Math.max(0,lefts.findIndex(l=>l>=x-4)-1)]||0;
+  }
+  t=Math.max(0,Math.min(max,Math.round(t)));
+  r._t=t; r.scrollTo({left:t,behavior:reduced?'auto':'smooth'});
+  clearTimeout(r._tm); r._tm=setTimeout(()=>{r._t=undefined;railUpdate(row);},700);
+  railUpdate(row);
+}
+document.querySelectorAll('.row').forEach(row=>{
+  const r=row.querySelector('.rail');
+  row.querySelectorAll('.arrows button').forEach(b=>b.addEventListener('click',()=>railGo(row,+b.dataset.dir)));
+  r.addEventListener('scroll',()=>{if(r._t===undefined)railUpdate(row);},{passive:true});
+  r.addEventListener('scrollend',()=>{r._t=undefined;railUpdate(row);});
+  addEventListener('resize',()=>railUpdate(row));
+  railUpdate(row);
+});
 
 /* ================= Modals ================= */
 let lastFocus=null;
