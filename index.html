@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amey Thakare — Delivered</title>
+<meta name="description" content="Amey Thakare: Program Manager and Business Consultant. 5+ years delivering cross-functional programs and $264M in cost savings. MS Business Analytics & AI + MBA, UT Dallas.">
+<meta property="og:title" content="Amey Thakare — Delivered">
+<meta property="og:description" content="Program Manager and Business Consultant. $264M in cost savings delivered across enterprise programs.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta name="theme-color" content="#0A0E1A">
+<link rel="preload" href="assets/fonts/big-shoulders-display-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<style>
+@font-face{font-family:"Big Shoulders Display";font-weight:700;font-display:swap;src:url(assets/fonts/big-shoulders-display-latin-700-normal.woff2) format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-weight:800;font-display:swap;src:url(assets/fonts/big-shoulders-display-latin-800-normal.woff2) format("woff2")}
+@font-face{font-family:"Big Shoulders Display";font-weight:900;font-display:swap;src:url(assets/fonts/big-shoulders-display-latin-900-normal.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:400;font-display:swap;src:url(assets/fonts/figtree-latin-400-normal.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:500;font-display:swap;src:url(assets/fonts/figtree-latin-500-normal.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:600;font-display:swap;src:url(assets/fonts/figtree-latin-600-normal.woff2) format("woff2")}
+@font-face{font-family:"Figtree";font-weight:700;font-display:swap;src:url(assets/fonts/figtree-latin-700-normal.woff2) format("woff2")}
+:root{
+  --ink:#0A0E1A; --ink-2:#121829; --ink-3:#1B2338;
+  --brass:#E2B05A; --brass-soft:#E2B05A33;
+  --steel:#8EA6D1; --paper:#EEE8DC; --muted:#8B90A0;
+  --display:"Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, Segoe UI, sans-serif;
+  --pad:clamp(20px,4.5vw,64px);
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--paper);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:4px}
+.wrap{padding-inline:var(--pad)}
+h2.row-title{font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:.01em;margin-bottom:6px}
+.row-sub{color:var(--muted);max-width:60ch;margin-bottom:26px}
+section{padding-block:clamp(56px,8vw,104px)}
+
+/* ---------- Intro ---------- */
+#intro{position:fixed;inset:0;z-index:100;background:var(--ink);display:grid;place-items:center;overflow:hidden}
+#intro .beam{position:absolute;left:50%;top:50%;height:2px;width:0;transform:translate(-50%,-50%);background:linear-gradient(90deg,transparent,var(--brass),transparent);box-shadow:0 0 30px 6px var(--brass-soft);animation:beam 1s var(--ease) .2s forwards}
+#intro .glow{position:absolute;inset:0;background:radial-gradient(ellipse 50% 22% at 50% 50%,#E2B05A22,transparent 70%);opacity:0;animation:fadeIn 1.2s ease .6s forwards}
+#intro .title{position:relative;text-align:center;will-change:transform,opacity}
+#intro .name{font-family:var(--display);font-weight:900;font-size:clamp(56px,13vw,190px);line-height:.86;letter-spacing:.02em;display:flex;justify-content:center;flex-wrap:wrap;column-gap:.25em}
+#intro .word{display:flex;overflow:hidden;padding-block:.06em}
+#intro .ch{display:inline-block;transform:translateY(105%);animation:rise .9s var(--ease) forwards}
+#intro .in{margin-top:18px;font-size:clamp(14px,1.6vw,18px);color:var(--muted);opacity:0;animation:fadeIn .8s ease 1.9s forwards}
+#intro .in b{font-family:var(--display);color:var(--brass);font-size:1.6em;font-weight:800;letter-spacing:.06em;margin-left:.3em;vertical-align:-.1em}
+#intro.out .title{animation:flyIn 1s cubic-bezier(.7,0,.3,1) forwards}
+#intro.out{animation:fadeOut .6s ease .55s forwards}
+#skip{position:absolute;right:var(--pad);bottom:36px;border:1px solid #ffffff40;padding:10px 18px;border-radius:4px;font-size:15px;background:#ffffff10;backdrop-filter:blur(6px);transition:background .2s,border-color .2s}
+#skip:hover{background:#ffffff22;border-color:var(--paper)}
+@keyframes beam{to{width:min(80vw,1100px)}}
+@keyframes rise{to{transform:none}}
+@keyframes fadeIn{to{opacity:1}}
+@keyframes fadeOut{to{opacity:0;visibility:hidden}}
+@keyframes flyIn{to{transform:scale(7);opacity:0;filter:blur(6px)}}
+
+/* ---------- Nav ---------- */
+nav{position:fixed;inset:0 0 auto;z-index:50;display:flex;align-items:center;gap:28px;padding:16px var(--pad);background:linear-gradient(#0A0E1Ae6,#0A0E1A00);transition:background .3s,transform .4s var(--ease)}
+nav.solid{background:#0A0E1Af2;box-shadow:0 1px 0 #ffffff12}
+nav.hide{transform:translateY(-100%)}
+.logo{font-family:var(--display);font-weight:900;font-size:30px;letter-spacing:.04em;text-decoration:none;color:var(--brass);line-height:1}
+nav ul{display:flex;gap:22px;list-style:none;font-size:15px}
+nav ul a{text-decoration:none;color:#c9c6bf;transition:color .2s}
+nav ul a:hover,nav ul a.active{color:var(--paper)}
+nav .spacer{flex:1}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:12px 24px;border-radius:5px;font-weight:600;font-size:16px;text-decoration:none;transition:transform .2s var(--ease),background .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn-play{background:var(--paper);color:var(--ink)}
+.btn-play:hover{background:#fff;box-shadow:0 0 0 4px #EEE8DC33}
+.btn-ghost{background:#8EA6D133;color:var(--paper);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:#8EA6D155}
+.btn-sm{padding:8px 16px;font-size:14px}
+.btn svg{width:18px;height:18px}
+.menu-btn{display:none}
+
+/* ---------- Hero ---------- */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;padding-top:110px;padding-bottom:clamp(40px,7vw,90px);overflow:hidden}
+.hero-art{position:absolute;inset:0 0 0 auto;width:min(62vw,980px);will-change:transform}
+.hero-art::before{content:"";position:absolute;inset:0;background:radial-gradient(42% 38% at 58% 34%,#8EA6D133,transparent 70%),radial-gradient(60% 50% at 60% 60%,#E2B05A1a,transparent 70%)}
+.hero-art img{position:relative;width:100%;height:100%;object-fit:cover;object-position:50% 20%}
+.hero-art::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,var(--ink) 0%,#0A0E1Acc 22%,#0A0E1A33 55%,#0A0E1A00 75%),
+  linear-gradient(0deg,var(--ink) 0%,#0A0E1A00 40%),
+  linear-gradient(180deg,#0A0E1Aaa 0%,#0A0E1A00 22%)}
+.hero-copy{position:relative;max-width:720px;will-change:transform,opacity}
+.hero .rank{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--paper);margin-bottom:14px}
+.hero .rank .tag{font-family:var(--display);font-weight:800;background:var(--brass);color:var(--ink);padding:3px 7px 1px;border-radius:3px;font-size:15px;letter-spacing:.04em}
+.hero h1{font-family:var(--display);font-weight:900;font-size:clamp(68px,11.5vw,168px);line-height:.84;letter-spacing:.01em;text-transform:uppercase}
+.hero h1 span{display:block}
+.hero .meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin:22px 0 16px;color:#cfcbc2;font-size:16px}
+.hero .meta .rating{border:1px solid #ffffff66;padding:0 7px;border-radius:3px;font-size:14px}
+.hero .meta .hl{color:#7fd29a;font-weight:600}
+.hero .logline{font-size:clamp(17px,1.5vw,20px);max-width:56ch;color:#e3ded3}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.hero .credits{margin-top:22px;font-size:14px;color:var(--muted);max-width:60ch}
+.hero .credits b{color:#c9c6bf;font-weight:500}
+.hero [data-in]{opacity:0;transform:translateY(18px)}
+body.ready .hero [data-in]{opacity:1;transform:none;transition:opacity .8s ease,transform .9s var(--ease);transition-delay:calc(var(--i,0) * 110ms)}
+body.ready .hero-art{animation:artIn 1.8s var(--ease) both}
+@keyframes artIn{from{opacity:0;transform:scale(1.12)}to{opacity:1;transform:scale(1)}}
+
+/* ---------- Impact ---------- */
+.impact{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#ffffff14;border-block:1px solid #ffffff14;padding:0}
+.impact div{background:var(--ink);padding:30px var(--pad) 28px}
+.impact div:first-child{padding-left:var(--pad)}
+.impact strong{display:block;font-family:var(--display);font-weight:800;font-size:clamp(44px,5vw,72px);line-height:1;color:var(--brass);font-variant-numeric:tabular-nums}
+.impact span{display:block;margin-top:8px;color:#c9c6bf;font-size:15px;max-width:24ch}
+
+/* ---------- Episodes / seasons ---------- */
+.season-bar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:26px}
+.season-tabs{display:flex;gap:6px;flex-wrap:wrap;background:var(--ink-2);padding:5px;border-radius:7px;border:1px solid #ffffff14}
+.season-tabs button{padding:9px 16px;border-radius:5px;font-size:15px;font-weight:600;color:#bdb9b0;transition:background .2s,color .2s}
+.season-tabs button:hover{color:var(--paper)}
+.season-tabs button[aria-selected=true]{background:var(--paper);color:var(--ink)}
+.season-desc{color:var(--muted);font-size:15px}
+.episodes{display:grid;gap:4px;max-width:1100px}
+.ep{display:grid;grid-template-columns:56px 200px 1fr;gap:22px;align-items:center;padding:18px;border-radius:8px;border-bottom:1px solid #ffffff10;transition:background .25s}
+.ep:hover{background:var(--ink-2)}
+.ep .num{font-family:var(--display);font-size:36px;font-weight:700;color:#5a6075;text-align:center;transition:color .25s}
+.ep:hover .num{color:var(--paper)}
+.ep .thumb{position:relative;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:var(--g);display:grid;place-items:center}
+.ep .thumb .stat{font-family:var(--display);font-weight:900;font-size:40px;color:#fff;text-shadow:0 2px 20px #0006;transition:transform .5s var(--ease),opacity .3s}
+.ep .thumb .play{position:absolute;width:44px;height:44px;border-radius:50%;border:2px solid #fff;background:#0007;display:grid;place-items:center;opacity:0;transform:scale(.7);transition:opacity .3s,transform .35s var(--ease)}
+.ep .thumb .play svg{width:16px;fill:#fff;margin-left:3px}
+.ep:hover .thumb .stat{transform:scale(1.15);opacity:.25}
+.ep:hover .thumb .play{opacity:1;transform:none}
+.ep .progress{position:absolute;left:0;right:0;bottom:0;height:4px;background:#ffffff33}
+.ep .progress i{display:block;height:100%;width:0;background:var(--brass);transition:width 1.4s var(--ease)}
+.ep.seen .progress i{width:var(--w,100%)}
+.ep h3{font-size:18px;font-weight:600;display:flex;justify-content:space-between;gap:16px}
+.ep h3 small{font-weight:500;color:var(--muted);font-size:14px;white-space:nowrap}
+.ep p{color:#bdb9b0;font-size:15.5px;margin-top:6px;max-width:72ch}
+.episodes.swap{animation:swap .5s var(--ease)}
+@keyframes swap{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+
+/* ---------- Rows of cards ---------- */
+.row{position:relative}
+.rail{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px var(--pad) 70px;margin:-34px 0 -50px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.row-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px}
+.arrows{display:flex;gap:8px}
+.arrows button{width:42px;height:42px;border-radius:50%;border:1px solid #ffffff30;display:grid;place-items:center;transition:background .2s,border-color .2s}
+.arrows button:hover{background:#ffffff18;border-color:var(--paper)}
+.arrows svg{width:18px;stroke:var(--paper);fill:none;stroke-width:2}
+
+.card{flex:0 0 clamp(250px,26vw,340px);scroll-snap-align:start;position:relative;border-radius:8px;background:var(--ink-2);transition:transform .35s var(--ease),box-shadow .35s,z-index 0s .35s;transform-origin:center;text-align:left;cursor:pointer}
+.card:first-child{transform-origin:left center}
+.card .art{aspect-ratio:16/9;border-radius:8px 8px 0 0;overflow:hidden;position:relative;background:var(--g)}
+.card .art svg.pattern{position:absolute;inset:0;width:100%;height:100%;opacity:.35;transition:transform 1.2s var(--ease)}
+.card .art .t{position:absolute;left:16px;bottom:12px;right:16px;font-family:var(--display);font-weight:900;font-size:30px;line-height:.92;text-transform:uppercase;text-shadow:0 2px 16px #0008}
+.card .art .badge{position:absolute;top:10px;left:12px;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.06em;background:#0A0E1Acc;color:var(--brass);padding:3px 7px 2px;border-radius:3px}
+.card .info{padding:14px 16px 16px;border-radius:0 0 8px 8px}
+.card .info .line1{display:flex;align-items:center;gap:10px;font-size:14px;color:#cfcbc2}
+.card .info .line1 .hl{color:#7fd29a;font-weight:600}
+.card .info p{font-size:14.5px;color:#bdb9b0;margin-top:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .more{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.card .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.card .tags span{font-size:12.5px;color:var(--steel);border:1px solid #8EA6D144;padding:1px 8px;border-radius:20px}
+.card .open{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:14px;font-weight:600;color:var(--paper)}
+@media (hover:hover) and (min-width:900px){
+  .card:hover,.card:focus-visible{transform:scale(1.1) translateY(-8px);z-index:5;box-shadow:0 24px 60px #000c;transition:transform .35s var(--ease) .15s,box-shadow .35s .15s,z-index 0s}
+  .card:hover .more,.card:focus-visible .more{max-height:160px}
+  .card:hover .art svg.pattern{transform:scale(1.15) rotate(2deg)}
+  .card:hover .info p{-webkit-line-clamp:unset}
+}
+@media (hover:none),(max-width:899px){.card .more{max-height:none}}
+
+/* top 10 style */
+.top .card{flex-basis:clamp(240px,24vw,310px)}
+
+/* ---------- Genres (skills) ---------- */
+.genres{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.genre{position:relative;padding:22px 22px 24px;border-radius:10px;background:var(--ink-2);border:1px solid #ffffff10;overflow:hidden;transition:border-color .3s,transform .3s var(--ease)}
+.genre::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at var(--mx,50%) var(--my,0%),#E2B05A1f,transparent 50%);opacity:0;transition:opacity .3s}
+.genre:hover{border-color:#E2B05A55;transform:translateY(-3px)}
+.genre:hover::before{opacity:1}
+.genre h3{font-family:var(--display);font-weight:800;font-size:28px;line-height:1;margin-bottom:4px;position:relative}
+.genre .count{color:var(--muted);font-size:14px;position:relative}
+.genre ul{list-style:none;display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;position:relative}
+.genre li{font-size:14px;padding:4px 11px;border-radius:20px;background:#ffffff0d;border:1px solid #ffffff14;transition:background .2s,color .2s,border-color .2s}
+.genre li:hover{background:var(--brass);color:var(--ink);border-color:var(--brass)}
+
+/* ---------- Awards ---------- */
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.award{padding:24px 22px;border-radius:10px;background:linear-gradient(160deg,#1B2338,#121829);border:1px solid #E2B05A2a;position:relative;overflow:hidden;transition:transform .35s var(--ease),border-color .3s}
+.award::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,#ffffff1c,transparent);transform:skewX(-20deg);transition:left .8s var(--ease)}
+.award:hover{transform:translateY(-4px);border-color:#E2B05A88}
+.award:hover::after{left:130%}
+.award .laurel{width:34px;height:34px;color:var(--brass);margin-bottom:12px}
+.award strong{display:block;font-family:var(--display);font-weight:800;font-size:25px;line-height:1.05}
+.award span{display:block;color:var(--muted);font-size:14.5px;margin-top:6px}
+.extras{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:40px;color:#c9c6bf;font-size:15.5px}
+.extras h3{font-size:16px;color:var(--paper);margin-bottom:8px;font-weight:600}
+
+/* ---------- Finale ---------- */
+.finale{position:relative;text-align:center;padding-block:clamp(90px,12vw,150px);overflow:hidden}
+.finale::before{content:"";position:absolute;inset:auto 0 0;height:70%;background:radial-gradient(ellipse 60% 70% at 50% 100%,#E2B05A26,transparent 70%)}
+.finale .up{color:var(--muted);font-size:16px;position:relative}
+.finale h2{font-family:var(--display);font-weight:900;font-size:clamp(54px,9vw,128px);line-height:.88;text-transform:uppercase;margin:12px 0 18px;position:relative}
+.finale p{max-width:54ch;margin:0 auto;color:#d6d1c7;position:relative}
+.finale .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px;position:relative}
+.countdown{position:relative;margin:34px auto 0;width:64px;height:64px}
+.countdown svg{width:64px;height:64px;transform:rotate(-90deg)}
+.countdown circle{fill:none;stroke-width:3}
+.countdown .bg{stroke:#ffffff22}
+.countdown .fg{stroke:var(--brass);stroke-dasharray:176;stroke-dashoffset:176}
+.finale.seen .countdown .fg{transition:stroke-dashoffset 5s linear;stroke-dashoffset:0}
+footer{padding:28px var(--pad) 40px;color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;border-top:1px solid #ffffff10}
+
+/* ---------- Modals ---------- */
+.modal{position:fixed;inset:0;z-index:80;display:none;place-items:center;padding:4vh 16px;background:#05070dcc;backdrop-filter:blur(6px);overflow-y:auto}
+.modal.open{display:grid;animation:fadeIn2 .3s ease}
+@keyframes fadeIn2{from{opacity:0}}
+.sheet{width:min(860px,100%);background:var(--ink-2);border-radius:12px;overflow:hidden;position:relative;box-shadow:0 30px 80px #000;animation:sheetIn .45s var(--ease)}
+@keyframes sheetIn{from{transform:translateY(40px) scale(.96);opacity:0}}
+.sheet .close{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;background:#0A0E1Acc;display:grid;place-items:center;transition:transform .25s var(--ease),background .2s}
+.sheet .close:hover{transform:rotate(90deg);background:#0A0E1A}
+.sheet .close svg{width:18px;stroke:#fff;stroke-width:2.2}
+.sheet .banner{aspect-ratio:21/8;position:relative;background:var(--g);overflow:hidden}
+.sheet .banner svg.pattern{position:absolute;inset:0;width:100%;height:100%;opacity:.35}
+.sheet .banner::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--ink-2),transparent 70%)}
+.sheet .banner h3{position:absolute;left:32px;bottom:18px;right:32px;z-index:2;font-family:var(--display);font-weight:900;font-size:clamp(36px,5vw,58px);line-height:.9;text-transform:uppercase}
+.sheet .body{padding:10px 32px 34px;display:grid;grid-template-columns:1.6fr 1fr;gap:30px}
+.sheet .line1{display:flex;flex-wrap:wrap;gap:12px;align-items:center;font-size:15px;color:#cfcbc2;margin-bottom:14px}
+.sheet .line1 .hl{color:#7fd29a;font-weight:600}
+.sheet ul.points{padding-left:18px;color:#d6d1c7;display:grid;gap:8px}
+.sheet .side{font-size:14.5px;color:var(--muted);display:grid;gap:14px;align-content:start}
+.sheet .side b{color:#cfcbc2;font-weight:500}
+.sheet .metrics{display:flex;gap:22px;flex-wrap:wrap;margin-top:22px}
+.sheet .metrics strong{display:block;font-family:var(--display);font-size:38px;color:var(--brass);line-height:1}
+.sheet .metrics span{font-size:13.5px;color:var(--muted)}
+
+/* trailer */
+#trailer .sheet{width:min(980px,100%);aspect-ratio:16/9;background:#05070d;display:flex;flex-direction:column}
+.bars{position:absolute;top:16px;left:20px;right:70px;display:flex;gap:6px;z-index:3}
+.bars i{flex:1;height:3px;border-radius:2px;background:#ffffff33;overflow:hidden}
+.bars i b{display:block;height:100%;width:0;background:var(--paper)}
+.bars i.done b{width:100%}
+.bars i.on b{animation:fill var(--dur) linear forwards}
+#trailer.paused .bars i.on b{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+.slide{position:absolute;inset:0;display:grid;align-content:center;padding:8% 9%;opacity:0;transition:opacity .5s}
+.slide.on{opacity:1}
+.slide .k{color:var(--steel);font-size:clamp(14px,1.6vw,18px);margin-bottom:10px}
+.slide .big{font-family:var(--display);font-weight:900;font-size:clamp(46px,9vw,120px);line-height:.88;color:var(--brass)}
+.slide .txt{font-size:clamp(17px,2vw,24px);max-width:36ch;margin-top:14px;color:var(--paper)}
+.slide.on .big,.slide.on .txt,.slide.on .k{animation:slideUp .8s var(--ease) both}
+.slide.on .txt{animation-delay:.12s}
+@keyframes slideUp{from{opacity:0;transform:translateY(26px)}}
+.slide.photo{background:linear-gradient(90deg,#05070d 40%,#05070d00 70%),linear-gradient(0deg,#05070d,#05070d00 22%),url(assets/portrait-1100.webp) right 22%/60% auto no-repeat}
+.slide.photo .big{max-width:6ch}
+.tap{position:absolute;top:0;bottom:0;width:35%;z-index:2}
+.tap.prev{left:0}.tap.next{right:0}
+.trailer-hint{position:absolute;bottom:14px;left:20px;font-size:13px;color:var(--muted);z-index:3}
+
+/* ---------- Responsive ---------- */
+@media (max-width:899px){
+  nav ul{display:none}
+  nav ul.open{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:#0A0E1Af7;padding:8px var(--pad) 18px;border-bottom:1px solid #ffffff14}
+  nav ul.open a{display:block;padding:12px 0;font-size:17px}
+  .menu-btn{display:grid;place-items:center;width:40px;height:40px}
+  .menu-btn svg{width:24px;stroke:var(--paper);stroke-width:2}
+  nav .btn-sm{display:none}
+  .hero{align-items:flex-end;padding-top:0}
+  .hero-art{width:100%;height:64%;inset:0 0 auto 0}
+  .hero-art::after{background:linear-gradient(0deg,var(--ink) 14%,#0A0E1Acc 38%,#0A0E1A00 72%),linear-gradient(180deg,#0A0E1Aaa,#0A0E1A00 25%)}
+  .impact{grid-template-columns:repeat(2,1fr)}
+  .impact div,.impact div:first-child{padding:24px 20px}
+  .ep{grid-template-columns:1fr;gap:12px;padding:16px 0}
+  .ep .num{display:none}
+  .ep .thumb{max-width:none}
+  .sheet .body{grid-template-columns:1fr;padding:6px 22px 28px}
+  .sheet .banner h3{left:22px}
+  #trailer .sheet{aspect-ratio:auto;height:min(78vh,640px)}
+  .slide.photo{background:linear-gradient(0deg,#05070d 45%,#05070d55),url(assets/portrait-600.webp) center 10%/cover no-repeat}
+  .arrows{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.01ms!important;transition-delay:0s!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body class="locked">
+
+<div id="intro" aria-hidden="true">
+  <div class="glow"></div>
+  <div class="beam"></div>
+  <div class="title">
+    <div class="name"><span class="word" data-w="AMEY"></span><span class="word" data-w="THAKARE"></span></div>
+    <div class="in">starring in <b>DELIVERED</b></div>
+  </div>
+  <button id="skip">Skip intro</button>
+</div>
+
+<nav id="nav" aria-label="Primary">
+  <a href="#top" class="logo" aria-label="Amey Thakare, back to top">AT</a>
+  <ul id="menu">
+    <li><a href="#episodes">Episodes</a></li>
+    <li><a href="#originals">Originals</a></li>
+    <li><a href="#genres">Skills</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="spacer"></span>
+  <a class="btn btn-ghost btn-sm" href="assets/Amey_Thakare_Resume.pdf" target="_blank" rel="noopener">Resume</a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+</nav>
+
+<main id="top">
+<header class="hero">
+  <div class="hero-art" id="heroArt">
+    <img src="assets/portrait-1100.webp" srcset="assets/portrait-600.webp 600w, assets/portrait-1100.webp 1100w" sizes="(max-width:899px) 100vw, 62vw" alt="Amey Thakare in a dark suit and striped tie, smiling">
+  </div>
+  <div class="wrap hero-copy" id="heroCopy">
+    <div class="rank" data-in style="--i:0"><span class="tag">NEW</span> Season 4 now streaming</div>
+    <h1 data-in style="--i:1"><span>Amey</span><span>Thakare</span></h1>
+    <div class="meta" data-in style="--i:2">
+      <span class="hl">Open to Program Manager roles</span>
+      <span>2019–now</span>
+      <span class="rating">Rated PM</span>
+      <span>4 seasons</span>
+      <span>Dallas, TX</span>
+    </div>
+    <p class="logline" data-in style="--i:3">A program manager and business consultant takes on enterprise procurement, mergers and spinoffs. Five years, $264M in cost savings, and the playbooks that kept everyone moving in the same direction.</p>
+    <div class="actions" data-in style="--i:4">
+      <button class="btn btn-play" id="playTrailer"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>Play trailer</button>
+      <a class="btn btn-ghost" href="#episodes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>Episodes</a>
+    </div>
+    <p class="credits" data-in style="--i:5"><b>Now:</b> MS Business Analytics &amp; AI + MBA, UT Dallas, graduating Dec 2026<br><b>Before:</b> Business Consultant, GEP Worldwide</p>
+  </div>
+</header>
+
+<div class="impact" id="impact" aria-label="Impact in numbers">
+  <div><strong data-count="264" data-pre="$" data-suf="M">$264M</strong><span>combined cost savings for enterprise clients</span></div>
+  <div><strong data-count="22" data-suf="%">22%</strong><span>higher operational efficiency from re-engineered processes</span></div>
+  <div><strong data-count="5" data-suf="+">5+</strong><span>years leading cross-functional programs</span></div>
+  <div><strong data-count="4.0" data-dec="1">4.0</strong><span>GPA across the MS and MBA double degree</span></div>
+</div>
+
+<section id="episodes" class="wrap">
+  <h2 class="row-title">Episodes</h2>
+  <p class="row-sub">Every season of the career so far. Pick a season to see its episodes.</p>
+  <div class="season-bar">
+    <div class="season-tabs" role="tablist" aria-label="Seasons" id="seasonTabs"></div>
+    <span class="season-desc" id="seasonDesc"></span>
+  </div>
+  <div class="episodes" id="epList" role="tabpanel"></div>
+</section>
+
+<section id="originals" class="row">
+  <div class="wrap row-head">
+    <div><h2 class="row-title">Originals</h2><p class="row-sub">Programs and projects, each with the result it delivered. Select one for the full story.</p></div>
+    <div class="arrows"><button data-dir="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button><button data-dir="1" aria-label="Scroll right"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button></div>
+  </div>
+  <div class="rail" id="originalsRail"></div>
+</section>
+
+<section id="leadership" class="row">
+  <div class="wrap row-head">
+    <div><h2 class="row-title">Behind the scenes</h2><p class="row-sub">Leadership on campus, running the teams that run the events.</p></div>
+  </div>
+  <div class="rail top" id="leadRail"></div>
+</section>
+
+<section id="genres" class="wrap">
+  <h2 class="row-title">Genres</h2>
+  <p class="row-sub">The skills, grouped the way they show up on the job.</p>
+  <div class="genres" id="genreGrid"></div>
+</section>
+
+<section id="awards" class="wrap">
+  <h2 class="row-title">Awards and honors</h2>
+  <p class="row-sub">Recognition from UT Dallas and the honor societies.</p>
+  <div class="awards" id="awardGrid"></div>
+  <div class="extras">
+    <div><h3>Education</h3>The University of Texas at Dallas, MS Business Analytics &amp; AI and MBA (double degree), Dec 2026, GPA 4.0.<br>VNIT Nagpur, B.Tech Civil Engineering, 2019.</div>
+    <div><h3>Certifications</h3>Oracle SQL Explorer Badge, SQL Essential Training, Cybersecurity at Work, McKinsey Forward Program.</div>
+    <div><h3>Languages</h3>English, Hindi and Marathi (native or bilingual), German (limited working), French (elementary).</div>
+  </div>
+</section>
+
+<section id="contact" class="finale wrap">
+  <p class="up">Next episode</p>
+  <h2>Your team</h2>
+  <p>I'm graduating in December 2026 and looking for Program Manager and business consulting roles where delivery, process and data meet. Let's talk about what you're building.</p>
+  <div class="actions">
+    <a class="btn btn-play" href="mailto:ameyashok.thakare@utdallas.edu">Email me</a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/ameythakare007" target="_blank" rel="noopener">LinkedIn</a>
+    <a class="btn btn-ghost" href="https://github.com/jazzboyadvanced007" target="_blank" rel="noopener">GitHub</a>
+    <a class="btn btn-ghost" href="assets/Amey_Thakare_Resume.pdf" target="_blank" rel="noopener">Download resume</a>
+  </div>
+  <div class="countdown" aria-hidden="true"><svg viewBox="0 0 64 64"><circle class="bg" cx="32" cy="32" r="28"/><circle class="fg" cx="32" cy="32" r="28"/></svg></div>
+</section>
+</main>
+
+<footer><span>© 2026 Amey Thakare</span><span>Dallas, TX</span></footer>
+
+<div class="modal" id="projModal" role="dialog" aria-modal="true" aria-labelledby="pmTitle">
+  <div class="sheet" id="pmSheet"></div>
+</div>
+
+<div class="modal" id="trailer" role="dialog" aria-modal="true" aria-label="30-second trailer">
+  <div class="sheet">
+    <div class="bars" id="bars"></div>
+    <button class="close" data-close aria-label="Close trailer"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div id="slides"></div>
+    <button class="tap prev" aria-label="Previous"></button><button class="tap next" aria-label="Next"></button>
+    <span class="trailer-hint">Tap the sides or use arrow keys. Space pauses.</span>
+  </div>
+</div>
+
+<script>
+/* ================= Content ================= */
+const G = {
+  brass:'linear-gradient(135deg,#7a4f14,#E2B05A 60%,#f4d79a)',
+  steel:'linear-gradient(135deg,#1d2c4f,#4f6fa8 55%,#8EA6D1)',
+  teal:'linear-gradient(135deg,#0d3b3f,#1f7a73 60%,#6cc3b3)',
+  plum:'linear-gradient(135deg,#2a1638,#6a3a7c 60%,#c48fc0)',
+  ember:'linear-gradient(135deg,#3a160f,#9a4a2a 60%,#e39a63)',
+  slate:'linear-gradient(135deg,#1b2131,#3b4560 60%,#7d89a8)',
+};
+
+const seasons = [
+  { id:'s1', label:'Season 1', title:'The engineer', years:'VNIT Nagpur, graduated 2019',
+    eps:[
+      {t:'Foundations', meta:'B.Tech Civil Engineering', stat:'3.6', g:G.slate, d:'Bachelor of Technology in Civil Engineering at Visvesvaraya National Institute of Technology. Systems thinking, project scheduling and the habit of planning backwards from a deadline.'},
+    ]},
+  { id:'s2', label:'Season 2', title:'The analyst', years:'GEP Worldwide, May 2019 – May 2021',
+    eps:[
+      {t:'What gets measured', meta:'Senior Business Analyst', stat:'KPI', g:G.steel, d:'Defined KPIs and built performance reporting with SQL and advanced Excel in a client-facing role, giving management clear visibility into spend and process performance.'},
+      {t:'Automate the manual', meta:'Senior Business Analyst', stat:'−20%', g:G.teal, d:'Automated manual reporting and analysis workflows with SQL and VBA, cutting process delays by 20% and cost overruns by 15%.'},
+      {t:'The forecast', meta:'Senior Business Analyst', stat:'$56M', g:G.brass, d:'Engineered data analytics and forecasting solutions that delivered $56M in cost savings and an 18% improvement in cost efficiency.'},
+    ]},
+  { id:'s3', label:'Season 3', title:'The consultant', years:'GEP Worldwide, May 2021 – Jul 2024',
+    eps:[
+      {t:'Transformation', meta:'Business Consultant', stat:'+22%', g:G.steel, d:'Drove end-to-end delivery of procurement transformation programs for enterprise clients, mapping current-state processes and re-engineering procedures, SOPs and policies to raise operational efficiency by 22%.'},
+      {t:'Mergers, acquisitions, spinoffs', meta:'Business Consultant', stat:'M&A', g:G.plum, d:'Managed requirements, milestones and risk mitigation plans with cross-functional stakeholders on merger, acquisition and spinoff integrations, keeping operations running through organizational change.'},
+      {t:'The liaison', meta:'Business Consultant', stat:'$208M', g:G.brass, d:'Primary liaison between client senior leadership and technical delivery teams, turning business objectives into automated BI dashboards and analytics models that delivered $208M in cost savings and a 16% cut in procurement costs.'},
+      {t:'The playbook', meta:'Business Consultant', stat:'SOP', g:G.teal, d:'Standardized delivery playbooks and best practices, and led training and onboarding to drive adoption of repeatable ways of working across teams.'},
+    ]},
+  { id:'s4', label:'Season 4', title:'The strategist', years:'UT Dallas, through Dec 2026',
+    eps:[
+      {t:'Double degree', meta:'MS Business Analytics & AI + MBA', stat:'4.0', g:G.brass, d:'Scholar with High Distinction in both the MS and MBA programs. Phi Kappa Phi, Beta Gamma Sigma, Dean’s Excellence Scholarship and the H.R. Saboowala International Merit Fellowship.'},
+      {t:'Value realization', meta:'Capstone, Aug 2026 – now', stat:'AI', g:G.ember, d:'Building an integrated value realization system for a global eyecare company, with function-level KPI dashboards and an AI copilot for querying performance.'},
+      {t:'Running the clubs', meta:'Leadership, Jan 2026 – now', stat:'PMC', g:G.plum, d:'President of the Project Management Club and Assistant Vice President of Operations for INFORMS at UT Dallas.'},
+    ]},
+];
+
+const originals = [
+  { id:'vrs', title:'Value Realization System', badge:'New season', year:'2026', role:'Capstone · Global eyecare company', g:G.ember,
+    hl:'In production', logline:'One system where every function records its initiatives, captures the value delivered and tracks KPIs on its own dashboard.',
+    tags:['Power BI','AI copilot','Governance','KPI design'],
+    points:['Developed a fully integrated value realization system where every function group records and tracks ongoing and past initiatives, captures value delivered, and monitors KPIs on dedicated function-level dashboards.','Built an AI-enabled copilot to query KPIs and performance metrics.','Authoring a playbook for sustainable governance so the system keeps running after handover.'],
+    metrics:[{v:'All',l:'functions on one system'},{v:'AI',l:'copilot for KPI questions'}], period:'Aug 2026 – present' },
+  { id:'proc', title:'Procurement Transformation', badge:'GEP', year:'2021–24', role:'Business Consultant · Enterprise clients', g:G.steel,
+    hl:'22% more efficient', logline:'Mapped current-state processes, then re-engineered procedures, SOPs and policies for enterprise procurement teams.',
+    tags:['Process mapping','SOPs','Change management','Stakeholders'],
+    points:['Drove end-to-end delivery of procurement transformation programs for enterprise clients.','Mapped current-state processes and re-engineered procedures, SOPs and policies.','Managed milestones and risk mitigation through merger, acquisition and spinoff integrations.'],
+    metrics:[{v:'22%',l:'operational efficiency'},{v:'M&A',l:'integrations kept running'}], period:'May 2021 – Jul 2024' },
+  { id:'bi', title:'Executive BI & Analytics', badge:'GEP', year:'2021–24', role:'Business Consultant · Client leadership', g:G.brass,
+    hl:'$208M saved', logline:'Translated what senior leaders needed to know into automated dashboards and analytics models.',
+    tags:['Power BI','SQL','Analytics models','Exec reporting'],
+    points:['Served as primary liaison between client senior leadership and technical delivery teams.','Translated business objectives into automated BI dashboards and analytics models.','Delivered $208M in cost savings and a 16% reduction in procurement costs.'],
+    metrics:[{v:'$208M',l:'cost savings'},{v:'16%',l:'lower procurement cost'}], period:'May 2021 – Jul 2024' },
+  { id:'lake', title:'Azure Lakehouse Modernization', badge:'UT Dallas', year:'2026', role:'Intelligent grid operations', g:G.teal,
+    hl:'250M+ records a day', logline:'An end-to-end Azure Lakehouse with ETL pipelines and real-time anomaly detection for grid operations.',
+    tags:['Azure','Microsoft Fabric','ETL','Data modeling'],
+    points:['Designed and delivered an end-to-end Azure Lakehouse with ETL pipelines and data modeling.','Processes more than 250 million records every day.','Automated anomaly detection flags operational exceptions in real time.'],
+    metrics:[{v:'250M+',l:'daily records'},{v:'Real time',l:'anomaly flags'}], period:'Jan – May 2026' },
+  { id:'fcst', title:'Demand Forecasting', badge:'UT Dallas', year:'2026', role:'Consumer behavior · Major CPG brand', g:G.plum,
+    hl:'94.3% accurate', logline:'A forecasting model on POS and behavioral data to guide multi-million-dollar commercial planning.',
+    tags:['Python','Random Forest','Regression','POS data'],
+    points:['Built a demand forecasting model using linear regression and random forest on POS and behavioral data.','Reached 94.3% accuracy.','Used to guide multi-million-dollar commercial planning decisions for a major CPG brand.'],
+    metrics:[{v:'94.3%',l:'forecast accuracy'},{v:'2',l:'model families compared'}], period:'Jan – May 2026' },
+  { id:'auto', title:'Reporting Automation', badge:'GEP', year:'2019–21', role:'Senior Business Analyst', g:G.slate,
+    hl:'$56M saved', logline:'Replaced manual reporting with SQL and VBA automation, and built forecasting that paid for itself many times over.',
+    tags:['SQL','VBA','Advanced Excel','Forecasting'],
+    points:['Automated manual reporting and analysis workflows using SQL and VBA.','Reduced process delays by 20% and cost overruns by 15%.','Engineered analytics and forecasting solutions that delivered $56M in cost savings and an 18% improvement in cost efficiency.'],
+    metrics:[{v:'$56M',l:'cost savings'},{v:'20%',l:'fewer delays'},{v:'15%',l:'lower overruns'}], period:'May 2019 – May 2021' },
+];
+
+const leadership = [
+  { id:'pmc', title:'Project Management Club', badge:'President', year:'2026', role:'UT Dallas', g:G.brass, hl:'President',
+    logline:'Lead governance and cross-functional operations. Previously led a six-officer team that grew membership and events.',
+    tags:['Governance','Team of 6','Events'],
+    points:['Lead governance and cross-functional operations for the club.','Previously led a six-officer team that grew membership and events.'],
+    metrics:[{v:'6',l:'officers led'}], period:'Jan 2026 – present' },
+  { id:'informs', title:'INFORMS at UT Dallas', badge:'AVP Operations', year:'2026', role:'UT Dallas', g:G.steel, hl:'AVP Operations',
+    logline:'Lead a five-member operations team that plans, schedules and runs analytics workshops and speaker events.',
+    tags:['Operations','Scheduling','Logistics'],
+    points:['Lead a five-member operations team.','Own planning, scheduling, logistics and execution for analytics workshops and speaker events.'],
+    metrics:[{v:'5',l:'person ops team'}], period:'Jan 2026 – present' },
+  { id:'mck', title:'McKinsey Forward', badge:'Certification', year:'', role:'McKinsey & Company program', g:G.teal, hl:'Completed',
+    logline:'McKinsey’s program on problem solving, communication and adaptability for early-career professionals.',
+    tags:['Problem solving','Communication'], points:['Completed the McKinsey Forward Program.'], metrics:[], period:'' },
+];
+
+const genres = [
+  {n:'Program delivery', items:['End-to-end program delivery','Milestone & critical path tracking','Project scheduling','Risk assessment & mitigation','Cross-functional coordination','Operational readiness']},
+  {n:'Process improvement', items:['Process re-engineering','Playbooks & SOPs','Process mapping','Root cause analysis','KPI design']},
+  {n:'Stakeholder leadership', items:['Senior leadership reporting','Executive presentations','Multi-level stakeholders','Tech & non-tech teams','Change management','Training & adoption']},
+  {n:'Data & tools', items:['SQL','Advanced Excel','Python','VBA','Power BI','Tableau','Salesforce','SAP','Snowflake','Microsoft Fabric','Azure','AWS','PowerApps']},
+];
+
+const awards = [
+  {t:'Scholar with High Distinction', s:'MS Business Analytics & AI and MBA, UT Dallas'},
+  {t:'4.0 GPA', s:'Across both graduate degrees'},
+  {t:'Phi Kappa Phi', s:'Honor society for the top students across disciplines'},
+  {t:'Beta Gamma Sigma', s:'International business honor society'},
+  {t:'Dean’s Excellence Scholarship', s:'Naveen Jindal School of Management'},
+  {t:'H.R. Saboowala Fellowship', s:'International Merit Fellowship'},
+];
+
+const trailer = [
+  {k:'In a hurry? Here’s the 30-second version.', big:'Amey Thakare', txt:'Program Manager and Business Consultant.', photo:true},
+  {k:'The impact', big:'$264M', txt:'in combined cost savings across enterprise procurement programs at GEP Worldwide.'},
+  {k:'The craft', big:'End to end', txt:'Milestones, risks and stakeholders through mergers, acquisitions and spinoffs.'},
+  {k:'The data', big:'SQL to AI', txt:'Power BI, Python, Azure and an AI copilot in the current capstone.'},
+  {k:'The timing', big:'Dec 2026', txt:'Graduating with an MS and MBA from UT Dallas, 4.0 GPA. Open to Program Manager roles.'},
+];
+
+/* ================= Helpers ================= */
+const $ = (s,el=document)=>el.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function pattern(seed){
+  // simple generative line art per card
+  let r = seed.split('').reduce((a,c)=>a*31+c.charCodeAt(0)>>>0,7);
+  const rnd=()=>((r=(r*1664525+1013904223)>>>0)/4294967296);
+  let p='';
+  for(let i=0;i<7;i++){const y=rnd()*180, a=rnd()*60+20; p+=`<path d="M-10 ${y.toFixed(0)} C 80 ${(y-a).toFixed(0)}, 220 ${(y+a).toFixed(0)}, 330 ${(y-a/2).toFixed(0)}" />`;}
+  for(let i=0;i<5;i++){p+=`<circle cx="${(rnd()*320).toFixed(0)}" cy="${(rnd()*180).toFixed(0)}" r="${(rnd()*40+8).toFixed(0)}"/>`;}
+  return `<svg class="pattern" viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice" fill="none" stroke="#fff" stroke-width="1.2" aria-hidden="true">${p}</svg>`;
+}
+
+/* ================= Render ================= */
+// Intro letters
+document.querySelectorAll('#intro .word').forEach((w,wi)=>{
+  [...w.dataset.w].forEach((c,i)=>{const s=document.createElement('span');s.className='ch';s.textContent=c;s.style.animationDelay=(0.6+wi*0.18+i*0.055)+'s';w.appendChild(s);});
+});
+
+// Seasons
+const tabs=$('#seasonTabs'), list=$('#epList'), desc=$('#seasonDesc');
+seasons.forEach((s,i)=>{
+  const b=document.createElement('button');b.role='tab';b.textContent=s.label;b.setAttribute('aria-selected',i===seasons.length-2);b.dataset.i=i;
+  b.onclick=()=>showSeason(i,true);tabs.appendChild(b);
+});
+function showSeason(i,animate){
+  const s=seasons[i];
+  tabs.querySelectorAll('button').forEach(b=>b.setAttribute('aria-selected',+b.dataset.i===i));
+  desc.textContent=`${s.title}. ${s.years}`;
+  list.innerHTML=s.eps.map((e,n)=>`
+    <article class="ep">
+      <div class="num">${n+1}</div>
+      <div class="thumb" style="--g:${e.g}">${pattern(e.t)}<span class="stat">${esc(e.stat)}</span><span class="play"><svg viewBox="0 0 24 24"><path d="M6 4v16l14-8z"/></svg></span><span class="progress"><i style="--w:${100-n*12}%"></i></span></div>
+      <div><h3>${esc(e.t)}<small>${esc(e.meta)}</small></h3><p>${esc(e.d)}</p></div>
+    </article>`).join('');
+  if(animate){list.classList.remove('swap');void list.offsetWidth;list.classList.add('swap');}
+  observeEps();
+}
+
+// Cards
+function cardHTML(o){
+  return `<button class="card" data-id="${o.id}" style="--g:${o.g}" aria-label="${esc(o.title)}: open details">
+    <div class="art">${pattern(o.id)}<span class="badge">${esc(o.badge)}</span><span class="t">${esc(o.title)}</span></div>
+    <div class="info">
+      <div class="line1"><span class="hl">${esc(o.hl)}</span>${o.year?`<span>${esc(o.year)}</span>`:''}</div>
+      <p>${esc(o.logline)}</p>
+      <div class="more"><div class="tags">${o.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div><span class="open">More details <svg width="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg></span></div>
+    </div></button>`;
+}
+$('#originalsRail').innerHTML=originals.map(cardHTML).join('');
+$('#leadRail').innerHTML=leadership.map(cardHTML).join('');
+const all=[...originals,...leadership];
+
+$('#genreGrid').innerHTML=genres.map(g=>`<div class="genre"><h3>${esc(g.n)}</h3><div class="count">${g.items.length} titles</div><ul>${g.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>`).join('');
+const laurel='<svg class="laurel" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 33c-6-4-8-12-5-19M27 33c6-4 8-12 5-19M9 25c-2 0-4-1-5-3 2-1 4 0 5 1M8 19c-2-1-3-3-3-5 2 0 3 2 4 3M10 13c-1-2-1-4 0-6 1 1 2 3 1 5M31 25c2 0 4-1 5-3-2-1-4 0-5 1M32 19c2-1 3-3 3-5-2 0-3 2-4 3M30 13c1-2 1-4 0-6-1 1-2 3-1 5M14 34h12"/><circle cx="20" cy="20" r="5"/></svg>';
+$('#awardGrid').innerHTML=awards.map(a=>`<div class="award">${laurel}<strong>${esc(a.t)}</strong><span>${esc(a.s)}</span></div>`).join('');
+
+/* ================= Intro ================= */
+const intro=$('#intro');
+function endIntro(){
+  if(intro.dataset.done)return; intro.dataset.done=1;
+  intro.classList.add('out');
+  setTimeout(()=>{document.body.classList.remove('locked');document.body.classList.add('ready');},450);
+  setTimeout(()=>intro.remove(),1300);
+  try{sessionStorage.setItem('introSeen','1')}catch(e){}
+}
+let seen=false;try{seen=sessionStorage.getItem('introSeen')}catch(e){}
+if(reduced||seen){intro.remove();document.body.classList.remove('locked');document.body.classList.add('ready');}
+else{
+  $('#skip').onclick=endIntro;
+  addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Enter')endIntro();},{once:true});
+  setTimeout(endIntro,3300);
+}
+
+/* ================= Nav ================= */
+const nav=$('#nav');let lastY=0;
+const heroArt=$('#heroArt'), heroCopy=$('#heroCopy');
+function onScroll(){
+  const y=scrollY;
+  nav.classList.toggle('solid',y>40);
+  nav.classList.toggle('hide',y>lastY&&y>500&&!$('#menu').classList.contains('open'));
+  lastY=y;
+  if(!reduced&&y<innerHeight*1.2){
+    const p=y/innerHeight;
+    heroArt.style.transform=`translateY(${y*.25}px) scale(${1+p*.08})`;
+    heroCopy.style.transform=`translateY(${y*.12}px)`;
+    heroCopy.style.opacity=Math.max(0,1-p*1.4);
+  }
+}
+addEventListener('scroll',()=>requestAnimationFrame(onScroll),{passive:true});
+$('#menuBtn').onclick=()=>{const m=$('#menu');const o=m.classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',o);};
+document.querySelectorAll('#menu a').forEach(a=>a.onclick=()=>{$('#menu').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded',false);});
+const secObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('#menu a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}}),{rootMargin:'-45% 0px -50% 0px'});
+['episodes','originals','genres','awards','contact'].forEach(id=>secObs.observe(document.getElementById(id)));
+
+/* ================= Scroll reveals ================= */
+function countUp(el){
+  const end=parseFloat(el.dataset.count),dec=+(el.dataset.dec||0),pre=el.dataset.pre||'',suf=el.dataset.suf||'';
+  if(reduced){return;}
+  const t0=performance.now(),dur=1600;
+  (function f(t){const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,4);el.textContent=pre+(end*e).toFixed(dec)+suf;if(p<1)requestAnimationFrame(f);})(t0);
+}
+const cObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('[data-count]').forEach(countUp);cObs.unobserve(e.target);}}),{threshold:.4});
+cObs.observe($('#impact'));
+const epObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');epObs.unobserve(e.target);}}),{threshold:.6});
+function observeEps(){list.querySelectorAll('.ep').forEach((el,i)=>{el.querySelector('.progress i').style.transitionDelay=(i*0.15)+'s';epObs.observe(el);});}
+showSeason(seasons.length-2,false);
+const fObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');fObs.unobserve(e.target);}}),{threshold:.5});
+fObs.observe($('#contact'));
+
+// spotlight on genre cards
+document.querySelectorAll('.genre').forEach(g=>g.addEventListener('pointermove',e=>{const r=g.getBoundingClientRect();g.style.setProperty('--mx',(e.clientX-r.left)+'px');g.style.setProperty('--my',(e.clientY-r.top)+'px');}));
+
+// rail arrows
+document.querySelectorAll('.arrows button').forEach(b=>b.onclick=()=>{const rail=b.closest('.row').querySelector('.rail');rail.scrollBy({left:+b.dataset.dir*rail.clientWidth*.8,behavior:'smooth'});});
+
+/* ================= Modals ================= */
+let lastFocus=null;
+function openModal(m){lastFocus=document.activeElement;m.classList.add('open');document.body.classList.add('locked');setTimeout(()=>m.querySelector('.close')?.focus(),50);}
+function closeModal(m){m.classList.remove('open');document.body.classList.remove('locked');lastFocus?.focus();if(m.id==='trailer')stopTrailer();}
+document.querySelectorAll('.modal').forEach(m=>{m.addEventListener('click',e=>{if(e.target===m||e.target.closest('[data-close]'))closeModal(m);});});
+addEventListener('keydown',e=>{const m=$('.modal.open');if(!m)return;if(e.key==='Escape')closeModal(m);
+  if(m.id==='trailer'){if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1);if(e.key===' '){e.preventDefault();togglePause();}}
+  if(e.key==='Tab'){const f=[...m.querySelectorAll('button,a[href]')].filter(x=>x.offsetParent);if(!f.length)return;const a=f[0],z=f[f.length-1];if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus();}else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus();}}
+});
+
+document.addEventListener('click',e=>{
+  const c=e.target.closest('.card');if(!c)return;
+  const o=all.find(x=>x.id===c.dataset.id);
+  $('#pmSheet').innerHTML=`
+    <button class="close" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div class="banner" style="--g:${o.g}">${pattern(o.id)}<h3 id="pmTitle">${esc(o.title)}</h3></div>
+    <div class="body">
+      <div>
+        <div class="line1"><span class="hl">${esc(o.hl)}</span>${o.period?`<span>${esc(o.period)}</span>`:''}</div>
+        <ul class="points">${o.points.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>
+        ${o.metrics.length?`<div class="metrics">${o.metrics.map(m=>`<div><strong>${esc(m.v)}</strong><span>${esc(m.l)}</span></div>`).join('')}</div>`:''}
+      </div>
+      <div class="side"><div><b>Role:</b> ${esc(o.role)}</div><div><b>Tools and themes:</b> ${o.tags.map(esc).join(', ')}</div></div>
+    </div>`;
+  openModal($('#projModal'));
+});
+
+/* ================= Trailer ================= */
+const DUR=5200;let ti=0,timer=null,paused=false,startT=0,left=DUR;
+$('#slides').innerHTML=trailer.map(s=>`<div class="slide${s.photo?' photo':''}"><div class="k">${esc(s.k)}</div><div class="big">${esc(s.big)}</div><div class="txt">${esc(s.txt)}</div></div>`).join('');
+$('#bars').innerHTML=trailer.map(()=>'<i><b></b></i>').join('');
+const T=$('#trailer');T.style.setProperty('--dur',DUR+'ms');
+function show(i){
+  ti=i;const sl=T.querySelectorAll('.slide'),bs=T.querySelectorAll('.bars i');
+  sl.forEach((s,n)=>s.classList.toggle('on',n===i));
+  bs.forEach((b,n)=>{b.classList.remove('on');b.classList.toggle('done',n<i);b.querySelector('b').style.animation='none';});
+  void T.offsetWidth;bs[i].querySelector('b').style.animation='';bs[i].classList.add('on');
+  clearTimeout(timer);left=DUR;startT=performance.now();paused=false;T.classList.remove('paused');
+  timer=setTimeout(()=>go(1),DUR);
+}
+function go(d){const n=ti+d;if(n>=trailer.length){closeModal(T);return;}show(Math.max(0,n));}
+function togglePause(){if(paused){paused=false;T.classList.remove('paused');startT=performance.now();timer=setTimeout(()=>go(1),left);}else{paused=true;T.classList.add('paused');clearTimeout(timer);left-=performance.now()-startT;}}
+function stopTrailer(){clearTimeout(timer);}
+$('#playTrailer').onclick=()=>{openModal(T);show(0);};
+T.querySelector('.tap.prev').onclick=()=>go(-1);
+T.querySelector('.tap.next').onclick=()=>go(1);
+</script>
+</body>
+</html>
